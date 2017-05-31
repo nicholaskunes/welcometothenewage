@@ -60,7 +60,7 @@ w = find_parameters_w(Dpi_r, Dp)
 dps = predict_dps(prices3, v_bid3, v_ask3, s1, s2, s3, w)
 
 number = 0
-for i in range(0, len(prices3) - 1, 1):
+for i in range(0, len(dps) - 1, 1):
     number += 1
    
 print(number)
