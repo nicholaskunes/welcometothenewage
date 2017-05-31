@@ -14,14 +14,15 @@ tickCount = 0;
 
 def tick():
     global tickCount 
-    print("test>?")
     #ticker = requests.get('https://www.okcoin.com/api/v1/ticker.do?symbol=btc_usd').json()
     #depth = requests.get('https://www.okcoin.com/api/v1/depth.do?symbol=btc_usd&size=60').json()
     #date = datetime.fromtimestamp(int(ticker['date']))
     #price = float(ticker['ticker']['last'])
     #v_bid = sum([bid[1] for bid in depth['bids']])
-    #v_ask = sum([ask[1] for ask in depth['asks']])    
+    #v_ask = sum([ask[1] for ask in depth['asks']]) 
+    print("test>?")
     asks, bids = btceapi.getDepth(pair)
+    print("test>222?")
     print(len(asks), len(bids))
     ask_prices, ask_volumes = zip(*asks)
     bid_prices, bid_volumes = zip(*bids)
