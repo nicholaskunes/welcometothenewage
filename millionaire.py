@@ -40,7 +40,7 @@ print("prices3: {}".format(len(prices3)))
 # appropriate length (180, 360, and 720).
 timeseries180 = generate_timeseries(prices1, 180)
 timeseries360 = generate_timeseries(prices1, 360)
-timeseries720 = generate_timeseries(prices1, 721)
+timeseries720 = generate_timeseries(prices1, 720)
 
 # Cluster timeseries180 in 100 clusters using k-means, return the cluster
 # centers (centers180), and choose the 20 most effective centers (s1).
