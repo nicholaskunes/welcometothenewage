@@ -59,7 +59,7 @@ w = find_parameters_w(Dpi_r, Dp)
 dps = predict_dps(prices3, v_bid3, v_ask3, s1, s2, s3, w)
 
 # What's your 'Fuck You Money' number?
-bank_balance = evaluate_performance(prices3, dps, t=0.0001, step=1)
+bank_balance = evaluate_performance(prices3, dps, t=0.001, step=1)
 
 print(dps)
 print(bank_balance)
