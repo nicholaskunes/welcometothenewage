@@ -179,7 +179,7 @@ def evaluate_performance(prices, dps, t, step):
     trade_count = 0
     position = 0
     btce_fee = 0.002
-    bitcoin_amount = 0.001
+    bitcoin_amount = 0.005
     for i in range(720, len(prices) - 1, step):
         # long position - BUY
         if dps[i - 720] > t and position <= 0:
