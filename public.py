@@ -4,7 +4,7 @@
 
 from collections import namedtuple
 
-from . import common, scraping
+import common, scraping
 
 PairInfoBase = namedtuple("PairInfoBase",
     ["decimal_places", "min_price", "max_price", "min_amount", "hidden", "fee"])
