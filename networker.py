@@ -13,7 +13,8 @@ tickCount = 0;
 
 
 def tick():
-    global tickCount    
+    global tickCount 
+    print("test>?")
     #ticker = requests.get('https://www.okcoin.com/api/v1/ticker.do?symbol=btc_usd').json()
     #depth = requests.get('https://www.okcoin.com/api/v1/depth.do?symbol=btc_usd&size=60').json()
     #date = datetime.fromtimestamp(int(ticker['date']))
