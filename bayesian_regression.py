@@ -28,8 +28,6 @@ def generate_timeseries(prices, n):
         (n+1-th column).
     """
     m = len(prices) - n
-    print(len(prices))
-    print(m)
     ts = np.empty((m, n + 1))
     for i in range(m):
         ts[i, :n] = prices[i:i + n]
