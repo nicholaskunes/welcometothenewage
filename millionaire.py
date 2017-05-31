@@ -19,13 +19,13 @@ for doc in collection.find().limit(num_points):
 
 # Divide prices into three, roughly equal sized, periods:
 # prices1, prices2, and prices3.
-"prices: {}".format(len(prices))
+print("prices: {}".format(len(prices)))
 
 [prices1, prices2, prices3] = np.array_split(prices, 3)
 
-"prices1: {}".format(len(prices1))
-"prices2: {}".format(len(prices2))
-"prices3: {}".format(len(prices3))
+print("prices1: {}".format(len(prices1)))
+print("prices2: {}".format(len(prices2)))
+print("prices3: {}".format(len(prices3)))
 
 
 # Divide v_bid into three, roughly equal sized, periods:
