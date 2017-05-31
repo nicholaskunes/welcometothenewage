@@ -58,5 +58,9 @@ w = find_parameters_w(Dpi_r, Dp)
 
 # Predict average price changes over the third time period.
 dps = predict_dps(prices3, v_bid3, v_ask3, s1, s2, s3, w)
+
+number = 0
+for i in range(720, len(prices3) - 1, 1):
+    number += 1
    
-print(dps)
+print(number)
