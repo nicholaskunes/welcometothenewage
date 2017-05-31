@@ -4,7 +4,7 @@ from pytz import utc
 from datetime import datetime
 from pymongo import MongoClient
 from apscheduler.schedulers.blocking import BlockingScheduler
-import btceapi
+import public
 
 client = MongoClient()
 database = client['btc-e_db']
