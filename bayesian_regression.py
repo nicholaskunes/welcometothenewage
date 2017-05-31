@@ -176,14 +176,17 @@ def evaluate_performance(prices, dps, t, step):
         A number representing the bank balance.
     """
     bank_balance = 0
+    trade_count = 0
     position = 0
     for i in range(720, len(prices) - 1, step):
         # long position - BUY
         if dps[i - 720] > t and position <= 0:
+            trade_count += 1
             position += 1
             bank_balance -= prices[i]
         # short position - SELL
         if dps[i - 720] < -t and position >= 0:
+            trade_count += 1
             position -= 1
             bank_balance += prices[i]
     # sell what you bought
@@ -192,4 +195,6 @@ def evaluate_performance(prices, dps, t, step):
     # pay back what you borrowed
     if position == -1:
         bank_balance -= prices[len(prices) - 1]
+        
+    print(trade_count)
     return bank_balance
