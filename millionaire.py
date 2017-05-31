@@ -2,6 +2,7 @@
 
 from pymongo import MongoClient
 from bayesian_regression import *
+import time
 
 client = MongoClient()
 database = client['okcoindb']
@@ -29,6 +30,8 @@ for doc in collection.find().limit(num_points):
 # Divide v_ask into three, roughly equal sized, periods:
 # v_ask1, v_ask2, and v_ask3.
 [v_ask1, v_ask2, v_ask3] = np.array_split(v_ask, 3)
+
+while True:
 
 # Use the first time period (prices1) to generate all possible time series of
 # appropriate length (180, 360, and 720).
@@ -61,5 +64,6 @@ dps = predict_dps(prices3, v_bid3, v_ask3, s1, s2, s3, w)
 # What's your 'Fuck You Money' number?
 bank_balance = evaluate_performance(prices3, dps, t=0.0001, step=1)
 
-print(dps)
 print(bank_balance)
+
+time.sleep(10)
