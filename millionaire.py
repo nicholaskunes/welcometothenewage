@@ -66,4 +66,4 @@ while True:
 
     print(bank_balance)
 
-    time.sleep(100)
+    time.sleep(20)
