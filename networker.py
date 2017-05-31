@@ -41,7 +41,7 @@ def tick():
 def main():
     """Run tick() at the interval of every ten seconds."""
     scheduler = BlockingScheduler(timezone=utc)
-    scheduler.add_job(tick, 'interval', seconds=10)
+    scheduler.add_job(tick, 'interval', seconds=3)
     scheduler.start()
 
 
