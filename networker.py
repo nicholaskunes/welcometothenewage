@@ -4,7 +4,6 @@ from pytz import utc
 from datetime import datetime
 from pymongo import MongoClient
 from apscheduler.schedulers.blocking import BlockingScheduler
-import public
 
 client = MongoClient()
 database = client['btc-e_db']
@@ -14,23 +13,16 @@ tickCount = 0;
 
 def tick():
     global tickCount 
-    #ticker = requests.get('https://www.okcoin.com/api/v1/ticker.do?symbol=btc_usd').json()
-    #depth = requests.get('https://www.okcoin.com/api/v1/depth.do?symbol=btc_usd&size=60').json()
-    #date = datetime.fromtimestamp(int(ticker['date']))
-    #price = float(ticker['ticker']['last'])
-    #v_bid = sum([bid[1] for bid in depth['bids']])
-    #v_ask = sum([ask[1] for ask in depth['asks']]) 
-    print("test>?")
-    asks, bids = btceapi.getDepth(pair)
-    print("test>222?")
-    print(len(asks), len(bids))
-    ask_prices, ask_volumes = zip(*asks)
-    bid_prices, bid_volumes = zip(*bids)
-    print(ask_volumes);
-    print(bid_volumes);   
-    #collection.insert({'date': date, 'price': price, 'v_bid': v_bid, 'v_ask': v_ask})
+    ticker = requests.get('https://btc-e.com/api/3/ticker/btc_usd').json()
+    depth = requests.get('https://btc-e.com/api/3/depth/btc_usd').json()
+    date = datetime.fromtimestamp(int(ticker['btc_usd']['updated']))
+    price = float(ticker['btc_usd']['last'])
+    v_bid = sum([bid[1] for bid in depth['btc_usd']['bids']])
+    v_ask = sum([ask[1] for ask in depth['btc_usd']['asks']]) 
+    collection.insert({'date': date, 'price': price, 'v_bid': v_bid, 'v_ask': v_ask})
     tickCount += 1;
     print(tickCount)
+    print("date: {} price: {} v_bid: {} v_ask: {}".format(date, price, v_bid, v_ask))
 
 
 def main():
