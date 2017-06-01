@@ -5,7 +5,7 @@ from bayesian_regression import *
 import time
 
 client = MongoClient()
-database = client['btc-e_db']
+database = client['okcoindb']
 collection = database['historical_data']
 
 # Retrieve price, v_ask, and v_bid data points from the database.
@@ -31,7 +31,7 @@ for doc in collection.find().limit(num_points):
 # v_ask1, v_ask2, and v_ask3.
 [v_ask1, v_ask2, v_ask3] = np.array_split(v_ask, 3)
 
-while True:
+#while True:
 
     # Use the first time period (prices1) to generate all possible time series of
     # appropriate length (180, 360, and 720).
@@ -68,4 +68,4 @@ while True:
 
     print(bank_balance)
 
-    time.sleep(15)
+    #time.sleep(15)
