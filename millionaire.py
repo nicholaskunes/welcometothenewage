@@ -5,7 +5,7 @@ from bayesian_regression import *
 import time
 
 client = MongoClient()
-database = client['okcoindb']
+database = client['btc-e_db']
 collection = database['historical_data']
 
 # Retrieve price, v_ask, and v_bid data points from the database.
@@ -59,7 +59,7 @@ while True:
     w = find_parameters_w(Dpi_r, Dp)
 
     # Predict average price changes over the third time period.
-    dps = predict_dps(prices3, v_bid3, v_ask3, s1, s2, s3, w)
+    dps = predict_dps(prices2, v_bid3, v_ask3, s1, s2, s3, w)
 
     # What's your 'Fuck You Money' number?
     bank_balance = evaluate_performance(prices3, dps, t=0.0035, step=1)
