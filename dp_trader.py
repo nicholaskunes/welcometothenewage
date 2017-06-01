@@ -66,29 +66,31 @@ dps = predict_dps(prices3, v_bid3, v_ask3, s1, s2, s3, w)
 btce_fee = 0.002
 bitcoin_amount = 0.001
 trade_count = 0
+dp_count = 0
 position = 0
 revenue = 0
 t = 0.0035
 print(dps)
-for i in range(720, len(dps) - 1, 1):
+for i in range(0, len(dps) - 1, 1):
+    dp_cout += 1
     # BUY position
-    if dps[i - 720] > t and position <= 0:
+    if dps[i] > t and position <= 0:
         trade_count += 1
         position += 1
         ticker = requests.get('https://btc-e.com/api/3/ticker/btc_usd').json()
         date = datetime.fromtimestamp(int(ticker['btc_usd']['updated']))
         price = float(ticker['btc_usd']['last'])
         revenue -= btce_fee * price * bitcoin_amount
-        print("[SESSION-{}] BOUGHT {} BTC at ${} USD and currently hold {}".format(date, bitcoin_amount, price, revenue))
+        print("[SESSION-{}-{}] BOUGHT {} BTC at ${} USD and currently hold {}".format(date, dp_count, bitcoin_amount, price, revenue))
     # SELL position
-    if dps[i - 720] < -t and position >= 0:
+    if dps[i] < -t and position >= 0:
         trade_count += 1
         position -= 1
         ticker = requests.get('https://btc-e.com/api/3/ticker/btc_usd').json()
         date = datetime.fromtimestamp(int(ticker['btc_usd']['updated']))
         price = float(ticker['btc_usd']['last'])
         revenue += btce_fee * price * bitcoin_amount  
-        print("[SESSION-{}] SOLD {} BTC at ${} USD and currently hold {}".format(date, bitcoin_amount, price, revenue))
+        print("[SESSION-{}] SOLD {} BTC at ${} USD and currently hold {}".format(date, dp_count, bitcoin_amount, price, revenue))
     time.sleep(10)
     
 ticker = requests.get('https://btc-e.com/api/3/ticker/btc_usd').json()
