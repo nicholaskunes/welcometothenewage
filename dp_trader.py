@@ -74,12 +74,18 @@ for i in range(0, len(dps) - 1, 1):
     if dps[i - 720] > t and position <= 0:
         trade_count += 1
         position += 1
-        revenue -= btce_fee * prices[i] * bitcoin_amount
+        ticker = requests.get('https://btc-e.com/api/3/ticker/btc_usd').json()
+        price = float(ticker['btc_usd']['last'])
+        revenue -= btce_fee * price * bitcoin_amount
     # SELL position
     if dps[i - 720] < -t and position >= 0:
         trade_count += 1
         position -= 1
-        revenue += btce_fee * prices[i] * bitcoin_amount  
+        ticker = requests.get('https://btc-e.com/api/3/ticker/btc_usd').json()
+        price = float(ticker['btc_usd']['last'])
+        revenue += btce_fee * price * bitcoin_amount  
     time.sleep(10)
-        
-print("[SESSION] # of trades: {} revenue: {}".format(trade_count, revenue))
+    
+ticker = requests.get('https://btc-e.com/api/3/ticker/btc_usd').json()
+date = datetime.fromtimestamp(int(ticker['btc_usd']['updated']))
+print("[SESSION-{}] # of trades: {} revenue: {}".format(date, trade_count, revenue))
