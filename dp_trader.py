@@ -67,7 +67,7 @@ btce_fee = 0.002
 bitcoin_amount = 0.001
 trade_count = 0
 position = 0
-#revenue = 0
+revenue = 0
 t = 0.0035
 for i in range(0, len(dps) - 1, 1):
     # BUY position
