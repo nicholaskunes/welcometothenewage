@@ -24,6 +24,7 @@ def tick():
     collection.insert({'date': date, 'price': price, 'v_bid': v_bid, 'v_ask': v_ask})
     tickCount += 1;
     print(tickCount)
+    print("date: {} price: {} v_bid: {} v_ask: {}".format(date, price, v_bid, v_ask))
 
 
 def main():
