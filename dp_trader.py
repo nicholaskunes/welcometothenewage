@@ -80,5 +80,6 @@ for i in range(0, len(dps) - 1, 1):
         trade_count += 1
         position -= 1
         revenue += btce_fee * prices[i] * bitcoin_amount  
+    time.sleep(10)
         
 print("[SESSION] # of trades: {} revenue: {}".format(trade_count, revenue))
