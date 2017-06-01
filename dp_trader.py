@@ -3,9 +3,13 @@
 from pymongo import MongoClient
 from bayesian_regression import *
 import time
+import requests
+from pytz import utc
+from datetime import datetime
+from apscheduler.schedulers.blocking import BlockingScheduler
 
 client = MongoClient()
-database = client['okcoindb']
+database = client['btc-e_db']
 collection = database['historical_data']
 
 # Retrieve price, v_ask, and v_bid data points from the database.
@@ -59,8 +63,22 @@ w = find_parameters_w(Dpi_r, Dp)
 # Predict average price changes over the third time period.
 dps = predict_dps(prices3, v_bid3, v_ask3, s1, s2, s3, w)
 
-number = 0
+btce_fee = 0.002
+bitcoin_amount = 0.001
+trade_count = 0
+position = 0
+revenue = 0
+t = 0.0035
 for i in range(0, len(dps) - 1, 1):
-    number += 1
-   
-print(number)
+    # BUY position
+    if dps[i - 720] > t and position <= 0:
+        trade_count += 1
+        position += 1
+        revenue -= btce_fee * prices[i] * bitcoin_amount
+    # SELL position
+    if dps[i - 720] < -t and position >= 0:
+        trade_count += 1
+        position -= 1
+        revenue += btce_fee * prices[i] * bitcoin_amount  
+        
+print("[SESSION] # of trades: {} revenue: {}".format(trade_count, revenue))
