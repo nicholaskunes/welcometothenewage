@@ -39,8 +39,6 @@ timeseries180 = generate_timeseries(prices1, 180)
 timeseries360 = generate_timeseries(prices1, 360)
 timeseries720 = generate_timeseries(prices1, 720)
 
-print(prices1, prices2, prices3)
-
 # Cluster timeseries180 in 100 clusters using k-means, return the cluster
 # centers (centers180), and choose the 20 most effective centers (s1).
 centers180 = find_cluster_centers(timeseries180, 100)
