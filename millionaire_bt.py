@@ -77,8 +77,9 @@ while True:
 # Predict average price changes over the third time period.
     dps = predict_dps(prices3, v_bid3, v_ask3, s1, s2, s3, w)
 
-    print(dps)
-
+    for i in range(len(dps) - 10, len(dps) - 1, 1):
+        print(dps[i])
+        
 # What's your 'Fuck You Money' number?
     bank_balance = evaluate_performance(prices3, dps, t=0.0035, step=1)
 
