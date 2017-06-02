@@ -61,7 +61,7 @@ s3 = choose_effective_centers(centers720, 20)
 
 for i in range(0, len(prices1) - 1, 1):
     print(prices1[i])
-    for i in range(0, len(prices2) - 1, 1):
+for i in range(0, len(prices2) - 1, 1):
     print(prices2[i])
 for i in range(0, len(prices3) - 1, 1):
     print(prices3[i])
