@@ -186,14 +186,14 @@ def evaluate_performance(prices, dps, t, step):
         if dps[i - 720] > t and position <= 0:
             trade_count += 1
             position += 1
-            revenue_usd -= (bitcoin_amount - (bitcoin_amount * btc_fee)) * price
-            revenue_btc += btc_amount
+            revenue_usd -= (bitcoin_amount - (bitcoin_amount * btc_fee)) * prices[i]
+            revenue_btc += bitcoin_amount
         # short position - SELL
         if dps[i - 720] < -t and position >= 0:
             trade_count += 1
             position -= 1
-            revenue_btc -= btc_amount
-            revenue_usd += (bitcoin_amount - (bitcoin_amount * btc_fee)) * price
+            revenue_btc -= bitcoin_amount
+            revenue_usd += (bitcoin_amount - (bitcoin_amount * btc_fee)) * prices[i]
        
-    print(trade_count)
-    return bank_balance
+    print(revenue_btc, revenue_usd)
+    return revenue_btc
