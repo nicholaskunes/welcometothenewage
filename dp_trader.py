@@ -64,7 +64,7 @@ w = find_parameters_w(Dpi_r, Dp)
 dps = predict_dps(prices3, v_bid3, v_ask3, s1, s2, s3, w)
 
 btce_fee = 0.002
-bitcoin_amount = 0.001
+bitcoin_amount = 1
 trade_count = 0
 dp_count = 0
 position = 0
