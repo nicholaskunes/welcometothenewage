@@ -8,30 +8,30 @@ client = MongoClient()
 database = client['btc-e_db']
 collection = database['historical_data']
 
+while True:
+
 # Retrieve price, v_ask, and v_bid data points from the database.
-prices = []
-v_ask = []
-v_bid = []
-num_points = 777600
-for doc in collection.find().limit(num_points):
-    prices.append(doc['price'])
-    v_ask.append(doc['v_ask'])
-    v_bid.append(doc['v_bid'])
+    prices = []
+    v_ask = []
+    v_bid = []
+    num_points = 777600
+    for doc in collection.find().limit(num_points):
+        prices.append(doc['price'])
+        v_ask.append(doc['v_ask'])
+        v_bid.append(doc['v_bid'])
 
 # Divide prices into three, roughly equal sized, periods:
 # prices1, prices2, and prices3.
 
-[prices1, prices2, prices3] = np.array_split(prices, 3)
+    [prices1, prices2, prices3] = np.array_split(prices, 3)
 
 # Divide v_bid into three, roughly equal sized, periods:
 # v_bid1, v_bid2, and v_bid3.
-[v_bid1, v_bid2, v_bid3] = np.array_split(v_bid, 3)
+    [v_bid1, v_bid2, v_bid3] = np.array_split(v_bid, 3)
 
 # Divide v_ask into three, roughly equal sized, periods:
 # v_ask1, v_ask2, and v_ask3.
-[v_ask1, v_ask2, v_ask3] = np.array_split(v_ask, 3)
-
-while True:
+    [v_ask1, v_ask2, v_ask3] = np.array_split(v_ask, 3)
 
 # Use the first time period (prices1) to generate all possible time series of
 # appropriate length (180, 360, and 720).
