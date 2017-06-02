@@ -23,16 +23,6 @@ for doc in collection.find().limit(num_points):
 
 [prices1, prices2, prices3] = np.array_split(prices, 3)
 
-for i in range(0, len(prices) - 1, 1):
-    if prices[i] <= 2000:
-        print(prices[i])
-    if prices[i] >= 2300:
-        print(prices[i])
-
-#print(prices2)
-
-#print(prices3)
-
 # Divide v_bid into three, roughly equal sized, periods:
 # v_bid1, v_bid2, and v_bid3.
 [v_bid1, v_bid2, v_bid3] = np.array_split(v_bid, 3)
@@ -69,8 +59,11 @@ centers720 = find_cluster_centers(timeseries720, 100)
 s3 = choose_effective_centers(centers720, 20)
 #print("s3: {}".format(s3))
 
-#print(len(centers180), len(s1), len(centers360), len(s2), len(centers720), len(s3))
-
+for i in range(0, len(centers180) - 1, 1):
+    if centers180[i] <= 2000:
+        print(centers180[i])
+    if centers180[i] >= 2500:
+        print(centers180[i])
 
 # Use the second time period to generate the independent and dependent
 # variables in the linear regression model:
