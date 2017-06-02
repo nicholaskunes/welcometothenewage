@@ -68,7 +68,8 @@ bitcoin_amount = 1
 trade_count = 0
 dp_count = 0
 position = 0
-revenue = 0
+revenue_btc = 0
+revenue_usd = 0
 t = 0.0035
 print(dps)
 for i in range(0, len(dps) - 1, 1):
@@ -80,8 +81,9 @@ for i in range(0, len(dps) - 1, 1):
         ticker = requests.get('https://btc-e.com/api/3/ticker/btc_usd').json()
         date = datetime.fromtimestamp(int(ticker['btc_usd']['updated']))
         price = float(ticker['btc_usd']['last'])
-        revenue -= btce_fee * price * bitcoin_amount
-        print("[SESSION-{}-{}] BOUGHT {} BTC at ${} USD and currently hold {}".format(date, dp_count, bitcoin_amount, price, revenue))
+        revenue_usd -= (bitcoin_amount - (bitcoin_amount * btc_fee)) * price
+        revenue_btc += bitcoin_amount
+        print("[SESSION-{}-{}] BOUGHT {} BTC at ${} USD and currently hold $ {}, BTC {}".format(date, dp_count, bitcoin_amount, price, revenue_usd, revenue_btc))
     # SELL position
     if dps[i] < -t and position >= 0:
         trade_count += 1
@@ -89,8 +91,10 @@ for i in range(0, len(dps) - 1, 1):
         ticker = requests.get('https://btc-e.com/api/3/ticker/btc_usd').json()
         date = datetime.fromtimestamp(int(ticker['btc_usd']['updated']))
         price = float(ticker['btc_usd']['last'])
-        revenue += btce_fee * price * bitcoin_amount  
-        print("[SESSION-{}-{}] SOLD {} BTC at ${} USD and currently hold {}".format(date, dp_count, bitcoin_amount, price, revenue))
+        revenue_btc -= bitcoin_amount
+        revenue_usd += (bitcoin_amount - (bitcoin_amount * btc_fee)) * price
+        print("[SESSION-{}-{}] SOLD {} BTC at ${} USD and currently hold $ {}, BTC {}".format(date, dp_count, bitcoin_amount, price, revenue_usd, revenue_btc))
+        # sell what you bought
     time.sleep(10)
     
 ticker = requests.get('https://btc-e.com/api/3/ticker/btc_usd').json()
