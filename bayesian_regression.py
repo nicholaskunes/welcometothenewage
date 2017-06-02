@@ -195,5 +195,5 @@ def evaluate_performance(prices, dps, t, step):
             revenue_btc -= bitcoin_amount
             revenue_usd += (bitcoin_amount - (bitcoin_amount * btce_fee)) * prices[i]
        
-    print(revenue_btc, revenue_usd)
+    print("currently hold $ {}, BTC {}, trade_count {}".format(revenue_usd, revenue_btc, trade_count))
     return revenue_btc
