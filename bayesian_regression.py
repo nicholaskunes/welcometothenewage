@@ -175,7 +175,8 @@ def evaluate_performance(prices, dps, t, step):
     Returns:
         A number representing the bank balance.
     """
-    bank_balance = 0
+    revenue_btc = 0
+    revenue_usd = 0
     trade_count = 0
     position = 0
     btce_fee = 0.002
@@ -185,18 +186,14 @@ def evaluate_performance(prices, dps, t, step):
         if dps[i - 720] > t and position <= 0:
             trade_count += 1
             position += 1
-            bank_balance -= btce_fee * prices[i] * bitcoin_amount
+            revenue_usd -= (bitcoin_amount - (bitcoin_amount * btc_fee)) * price
+            revenue_btc += btc_amount
         # short position - SELL
         if dps[i - 720] < -t and position >= 0:
             trade_count += 1
             position -= 1
-            bank_balance += btce_fee * prices[i] * bitcoin_amount
-    # sell what you bought
-    if position == 1:
-        bank_balance += btce_fee * prices[len(prices) - 1] * bitcoin_amount
-    # pay back what you borrowed
-    if position == -1:
-        bank_balance -= btce_fee * prices[len(prices) - 1] * bitcoin_amount
-        
+            revenue_btc -= btc_amount
+            revenue_usd += (bitcoin_amount - (bitcoin_amount * btc_fee)) * price
+       
     print(trade_count)
     return bank_balance
