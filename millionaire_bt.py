@@ -59,12 +59,6 @@ centers720 = find_cluster_centers(timeseries720, 100)
 s3 = choose_effective_centers(centers720, 30)
 #print("s3: {}".format(s3))
 
-for i in range(0, len(centers180) - 1, 1):
-    if centers180[i][0] <= 2000:
-        print(centers180[i][0])
-    if centers180[i][0] >= 2500:
-        print(centers180[i][0])
-
 # Use the second time period to generate the independent and dependent
 # variables in the linear regression model:
 # Δp = w0 + w1 * Δp1 + w2 * Δp2 + w3 * Δp3 + w4 * r.
