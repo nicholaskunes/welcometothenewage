@@ -74,8 +74,7 @@ position = 0
 revenue_btc = bitcoin_amount
 revenue_usd = price
 t = 0.0035
-print(dps)
-for i in range(0, len(dps) - 1, 1):
+for i in range(0, 721, 1):
     dp_count += 1
     # BUY position
     if dps[i] > t and position <= 0:
