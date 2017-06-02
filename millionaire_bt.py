@@ -23,11 +23,13 @@ for doc in collection.find().limit(num_points):
 
 [prices1, prices2, prices3] = np.array_split(prices, 3)
 
-print(prices1)
+for i in range(0, len(prices1) - 1, step):
+    if prices1[prices] <= 2000:
+        print(prices1[i])
 
-print(prices2)
+#print(prices2)
 
-print(prices3)
+#print(prices3)
 
 # Divide v_bid into three, roughly equal sized, periods:
 # v_bid1, v_bid2, and v_bid3.
