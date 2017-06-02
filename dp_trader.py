@@ -63,13 +63,16 @@ w = find_parameters_w(Dpi_r, Dp)
 # Predict average price changes over the third time period.
 dps = predict_dps(prices3, v_bid3, v_ask3, s1, s2, s3, w)
 
+ticker = requests.get('https://btc-e.com/api/3/ticker/btc_usd').json()
+price = float(ticker['btc_usd']['last'])
+
 btce_fee = 0.002
 bitcoin_amount = 1
 trade_count = 0
 dp_count = 0
 position = 0
-revenue_btc = 0
-revenue_usd = 0
+revenue_btc = bitcoin_amount
+revenue_usd = price
 t = 0.0035
 print(dps)
 for i in range(0, len(dps) - 1, 1):
@@ -98,6 +101,7 @@ for i in range(0, len(dps) - 1, 1):
     time.sleep(10)
     
 ticker = requests.get('https://btc-e.com/api/3/ticker/btc_usd').json()
+price = float(ticker['btc_usd']['last'])
 date = datetime.fromtimestamp(int(ticker['btc_usd']['updated']))
 print("###---SESSION COMPLETE---###")
-print("[SESSION-{}] # of trades: {} revenue: {}".format(date, trade_count, revenue))
+print("[SESSION-{}] # of trades: {} revenue: {} last price for profit calc: {}".format(date, trade_count, revenue, price))
