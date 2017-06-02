@@ -175,12 +175,13 @@ def evaluate_performance(prices, dps, t, step):
     Returns:
         A number representing the bank balance.
     """
-    revenue_btc = 0
-    revenue_usd = 0
+    revenue_btc = 1
+    revenue_usd = prices[len(prices) - 1]
     trade_count = 0
     position = 0
     btce_fee = 0.002
     bitcoin_amount = 1
+    print("[session-init] currently hold $ {}, BTC {} -- starting to trade...".format(revenue_usd, revenue_btc))
     for i in range(720, len(prices) - 1, step):
         # long position - BUY
         if dps[i - 720] > t and position <= 0:
@@ -195,5 +196,5 @@ def evaluate_performance(prices, dps, t, step):
             revenue_btc -= bitcoin_amount
             revenue_usd += (bitcoin_amount - (bitcoin_amount * btce_fee)) * prices[i]
        
-    print("currently hold $ {}, BTC {}, trade_count {}".format(revenue_usd, revenue_btc, trade_count))
+    print("[session-ended] currently hold $ {}, BTC {}, trade_count {}".format(revenue_usd, revenue_btc, trade_count))
     return revenue_btc
