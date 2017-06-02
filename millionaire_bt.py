@@ -59,6 +59,7 @@ print("centers720: {}".format(centers720))
 s3 = choose_effective_centers(centers720, 20)
 print("s3: {}".format(s3))
 
+print(len(centers180), len(s1), len(centers360), len(s2), len(centers720), len(s3))
 
 
 # Use the second time period to generate the independent and dependent
