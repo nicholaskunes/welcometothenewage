@@ -23,6 +23,9 @@ for doc in collection.find().limit(num_points):
 
 [prices1, prices2, prices3] = np.array_split(prices, 3)
 
+for i in range(0, len(prices1) - 1, 1):
+    print(prices1)
+
 # Divide v_bid into three, roughly equal sized, periods:
 # v_bid1, v_bid2, and v_bid3.
 [v_bid1, v_bid2, v_bid3] = np.array_split(v_bid, 3)
