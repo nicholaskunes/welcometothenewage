@@ -40,10 +40,10 @@ timeseries360 = generate_timeseries(prices1, 360)
 timeseries720 = generate_timeseries(prices1, 720)
 
 for i in range(0, len(timeseries180) - 1, 1):
-    if timeseries180[i] <= 2000:
-        print(timeseries180[i])
-    if timeseries180[i] >= 2500:
-        print(timeseries180[i])
+    if timeseries180[i][0] <= 2000:
+        print(timeseries180[i][0])
+    if timeseries180[i][0] >= 2500:
+        print(timeseries180[i][0])
 
 # Cluster timeseries180 in 100 clusters using k-means, return the cluster
 # centers (centers180), and choose the 20 most effective centers (s1).
