@@ -72,7 +72,7 @@ revenue = 0
 t = 0.0035
 print(dps)
 for i in range(0, len(dps) - 1, 1):
-    dp_cout += 1
+    dp_count += 1
     # BUY position
     if dps[i] > t and position <= 0:
         trade_count += 1
