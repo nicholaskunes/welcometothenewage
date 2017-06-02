@@ -44,19 +44,19 @@ timeseries720 = generate_timeseries(prices1, 720)
 centers180 = find_cluster_centers(timeseries180, 100)
 #print("centers180: {}".format(centers180))
 
-s1 = choose_effective_centers(centers180, 30)
+s1 = choose_effective_centers(centers180, 20)
 #print("s1: {}".format(s1))
 
 centers360 = find_cluster_centers(timeseries360, 100)
 #print("centers360: {}".format(centers360))
 
-s2 = choose_effective_centers(centers360, 30)
+s2 = choose_effective_centers(centers360, 20)
 #print("s2: {}".format(s2))
 
 centers720 = find_cluster_centers(timeseries720, 100)
 #print("centers720: {}".format(centers720))
 
-s3 = choose_effective_centers(centers720, 30)
+s3 = choose_effective_centers(centers720, 20)
 #print("s3: {}".format(s3))
 
 # Use the second time period to generate the independent and dependent
