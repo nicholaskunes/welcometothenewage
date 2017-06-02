@@ -50,6 +50,8 @@ s2 = choose_effective_centers(centers360, 20)
 centers720 = find_cluster_centers(timeseries720, 100)
 s3 = choose_effective_centers(centers720, 20)
 
+print(s1, s2, s3)
+
 # Use the second time period to generate the independent and dependent
 # variables in the linear regression model:
 # Δp = w0 + w1 * Δp1 + w2 * Δp2 + w3 * Δp3 + w4 * r.
