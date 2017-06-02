@@ -24,7 +24,7 @@ for doc in collection.find().limit(num_points):
 [prices1, prices2, prices3] = np.array_split(prices, 3)
 
 for i in range(0, len(prices1) - 1, 1):
-    if prices1[prices] <= 2000:
+    if prices1[i] <= 2000:
         print(prices1[i])
 
 #print(prices2)
