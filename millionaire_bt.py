@@ -26,7 +26,7 @@ for doc in collection.find().limit(num_points):
 for i in range(0, len(prices) - 1, 1):
     if prices[i] <= 2000:
         print(prices[i])
-    if prices[i] >= 2500:
+    if prices[i] >= 2300:
         print(prices[i])
 
 #print(prices2)
