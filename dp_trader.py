@@ -73,7 +73,7 @@ dp_count = 0
 position = 0
 revenue_btc = bitcoin_amount
 revenue_usd = price
-t = 0.0035
+t = 0.01
 for i in range(0, 721, 1):
     dp_count += 1
     # BUY position
