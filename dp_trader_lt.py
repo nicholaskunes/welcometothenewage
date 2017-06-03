@@ -73,7 +73,7 @@ dp_count = 0
 position = 0
 revenue_btc = bitcoin_amount
 revenue_usd = price
-t = 0.0035
+t = 0.005
 for i in range(0, 721, 1):
     dp_count += 1
     # BUY position
@@ -85,7 +85,7 @@ for i in range(0, 721, 1):
         price = float(ticker['ltc_usd']['last'])
         revenue_usd -= (bitcoin_amount - (bitcoin_amount * btce_fee)) * price
         revenue_btc += bitcoin_amount
-        print("[SESSION-{}-{}] BOUGHT {} BTC at ${} USD and currently hold $ {}, BTC {}".format(date, dp_count, bitcoin_amount, price, revenue_usd, revenue_btc))
+        print("[SESSION-{}-{}] BOUGHT {} LTC at ${} USD and currently hold $ {}, LTC {}".format(date, dp_count, bitcoin_amount, price, revenue_usd, revenue_btc))
     # SELL position
     if dps[i] < -t and position >= 0:
         trade_count += 1
@@ -95,7 +95,7 @@ for i in range(0, 721, 1):
         price = float(ticker['ltc_usd']['last'])
         revenue_btc -= bitcoin_amount
         revenue_usd += (bitcoin_amount - (bitcoin_amount * btce_fee)) * price
-        print("[SESSION-{}-{}] SOLD {} BTC at ${} USD and currently hold $ {}, BTC {}".format(date, dp_count, bitcoin_amount, price, revenue_usd, revenue_btc))
+        print("[SESSION-{}-{}] SOLD {} LTC at ${} USD and currently hold $ {}, LTC {}".format(date, dp_count, bitcoin_amount, price, revenue_usd, revenue_btc))
         # sell what you bought
     time.sleep(10)
     
