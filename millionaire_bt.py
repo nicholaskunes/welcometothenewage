@@ -84,6 +84,6 @@ while True:
 # What's your 'Fuck You Money' number?
     #bank_balance = evaluate_performance(prices3, dps, t=0.01, step=1)
 
-    #print(bank_balance)
+    print("saved btc.csv")
 
     time.sleep(15)
