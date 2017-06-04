@@ -80,6 +80,8 @@ while True:
     #print(dps)
         
 # What's your 'Fuck You Money' number?
-    bank_balance = evaluate_performance(prices3, dps, t=0.0006, step=1)
+    #bank_balance = evaluate_performance(prices3, dps, t=0.0006, step=1)
+    
+    np.savetxt("ltc.csv", dps, delimiter=",")
     
     time.sleep(15)
