@@ -80,6 +80,6 @@ while True:
     #print(dps)
         
 # What's your 'Fuck You Money' number?
-    bank_balance = evaluate_performance(prices3, dps, t=0.000712753, step=1)
+    bank_balance = evaluate_performance(prices3, dps, t=0.0006, step=1)
     
     time.sleep(15)
