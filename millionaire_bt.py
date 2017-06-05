@@ -2,6 +2,7 @@
 
 from pymongo import MongoClient
 from bayesian_regression import *
+import subprocess
 import time
 
 client = MongoClient()
@@ -47,4 +48,8 @@ dps = predict_dps(prices3, v_bid3, v_ask3, s1, s2, s3, w)
 
 np.savetxt("btc.csv", dps, delimiter=",")
 
-print("saved btc.csv")
+output = subprocess.check_output("curl --upload-file ./btc.csv https://transfer.sh/btc.csv", shell=True)
+
+subprocess.call("rm -rf btc.csv", shell=True)
+
+print(output)
