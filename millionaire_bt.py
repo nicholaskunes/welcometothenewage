@@ -19,6 +19,10 @@ for doc in collection.find().limit(num_points):
 
 [prices1, prices2, prices3] = np.array_split(prices, 3)
 
+number = len(prices3)
+
+print(number)
+
 [v_bid1, v_bid2, v_bid3] = np.array_split(v_bid, 3)
 
 [v_ask1, v_ask2, v_ask3] = np.array_split(v_ask, 3)
@@ -42,10 +46,6 @@ s3 = choose_effective_centers(centers720, 20)
 Dpi_r, Dp = linear_regression_vars(prices2, v_bid2, v_ask2, s1, s2, s3)
 
 w = find_parameters_w(Dpi_r, Dp)
-
-number = len(prices3)
-
-print(number)
 
 #dps = predict_dps(prices3, v_bid3, v_ask3, s1, s2, s3, w)
 
