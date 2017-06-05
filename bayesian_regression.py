@@ -152,7 +152,7 @@ def predict_dps(prices, v_bid, v_ask, s1, s2, s3, w):
     """
     dps = []
     w0, w1, w2, w3, w4 = w
-    for i in range(720, 1441):
+    for i in range(720, len(prices) - 1):
         dp1 = predict_dpi(prices[i - 180:i], s1)
         dp2 = predict_dpi(prices[i - 360:i], s2)
         dp3 = predict_dpi(prices[i - 720:i], s3)
