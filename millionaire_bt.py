@@ -43,8 +43,12 @@ Dpi_r, Dp = linear_regression_vars(prices2, v_bid2, v_ask2, s1, s2, s3)
 
 w = find_parameters_w(Dpi_r, Dp)
 
-dps = predict_dps(prices3, v_bid3, v_ask3, s1, s2, s3, w)
+number = len(prices3)
 
-np.savetxt("btc.csv", dps, delimiter=",")
+print(number)
 
-print("saved btc.csv")
+#dps = predict_dps(prices3, v_bid3, v_ask3, s1, s2, s3, w)
+
+#np.savetxt("btc.csv", dps, delimiter=",")
+
+#print("saved btc.csv")
