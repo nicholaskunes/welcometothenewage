@@ -19,10 +19,6 @@ for doc in collection.find().limit(num_points):
 
 [prices1, prices2, prices3] = np.array_split(prices, 3)
 
-number = len(prices3)
-
-print(number)
-
 [v_bid1, v_bid2, v_bid3] = np.array_split(v_bid, 3)
 
 [v_ask1, v_ask2, v_ask3] = np.array_split(v_ask, 3)
