@@ -8,14 +8,14 @@ client = MongoClient()
 database = client['btc-e_db']
 collection = database['historical_data']
 
-  prices = []
-  v_ask = []
-  v_bid = []
-  num_points = 777600
-  for doc in collection.find().limit(num_points):
-    prices.append(doc['price'])
-    v_ask.append(doc['v_ask'])
-    v_bid.append(doc['v_bid'])
+prices = []
+v_ask = []
+v_bid = []
+num_points = 777600
+for doc in collection.find().limit(num_points):
+  prices.append(doc['price'])
+  v_ask.append(doc['v_ask'])
+  v_bid.append(doc['v_bid'])
 
 [prices1, prices2, prices3] = np.array_split(prices, 3)
 
