@@ -28,12 +28,12 @@ def tick():
     price_btcfinex = float(ticker_btcfinex['last_price'])
     price_ethfinex = float(ticker_ethfinex['last_price'])
     
-    ticker_ltcdax = float(ticker_ltcfinex['price'])
-    ticker_btcdax = float(ticker_btcfinex['price'])
-    ticker_ethdax = float(ticker_ethfinex['price'])
+    ticker_ltcdax = float(ticker_ltcdax['price'])
+    ticker_btcdax = float(ticker_btcdax['price'])
+    ticker_ethdax = float(ticker_ethdax['price'])
     
     tickCount += 1;
-    print("ltce {} btce {} ethe {}\nltcfinex {} btcfinex {} ethfinex {}\nltcfinex {} btcfinex {} ethfinex {}\n".format(price_ltce, price_btce, price_ethe, price_ltcfinex, price_btcfinex, price_ethfinex, price_ltcdax, price_btcdax, price_ethdax))
+    print("ltce {} btce {} ethe {}\nltcfinex {} btcfinex {} ethfinex {}\nltcdax {} btcdax {} ethdax {}\n".format(price_ltce, price_btce, price_ethe, price_ltcfinex, price_btcfinex, price_ethfinex, price_ltcdax, price_btcdax, price_ethdax))
 
 
 def main():
