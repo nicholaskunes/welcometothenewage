@@ -12,8 +12,8 @@ def tick():
     ticker_btce = requests.get('https://btc-e.com/api/3/ticker/btc_usd').json()
     ticker_ethe = requests.get('https://btc-e.com/api/3/ticker/eth_usd').json()
     
-    ticker_ltcfinex = requests.get('https://api.bitfinex.com/v1/pubticker/btcusd').json()
-    ticker_btcfinex = requests.get('https://api.bitfinex.com/v1/pubticker/ltcusd').json()
+    ticker_ltcfinex = requests.get('https://api.bitfinex.com/v1/pubticker/ltcusd').json()
+    ticker_btcfinex = requests.get('https://api.bitfinex.com/v1/pubticker/btcusd').json()
     ticker_ethfinex = requests.get('https://api.bitfinex.com/v1/pubticker/ethusd').json()
     
     price_ltce = float(ticker_ltce['ltc_usd']['last'])
