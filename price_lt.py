@@ -16,6 +16,10 @@ def tick():
     ticker_btcfinex = requests.get('https://api.bitfinex.com/v1/pubticker/btcusd').json()
     ticker_ethfinex = requests.get('https://api.bitfinex.com/v1/pubticker/ethusd').json()
     
+    ticker_ltcdax = requests.get('https://api.gdax.com/products/LTC-USD/ticker').json()
+    ticker_btcdax = requests.get('https://api.gdax.com/products/BTC-USD/ticker').json()
+    ticker_ethdax = requests.get('https://api.gdax.com/products/ETH-USD/ticker').json()
+    
     price_ltce = float(ticker_ltce['ltc_usd']['last'])
     price_btce = float(ticker_btce['btc_usd']['last'])
     price_ethe = float(ticker_ethe['eth_usd']['last'])
@@ -24,8 +28,12 @@ def tick():
     price_btcfinex = float(ticker_btcfinex['last_price'])
     price_ethfinex = float(ticker_ethfinex['last_price'])
     
+    ticker_ltcdax = float(ticker_ltcfinex['price'])
+    ticker_btcdax = float(ticker_btcfinex['price'])
+    ticker_ethdax = float(ticker_ethfinex['price'])
+    
     tickCount += 1;
-    print("ltce {} btce {} ethe {}\nltcfinex {} btcfinex {} ethfinex {}\n".format(price_ltce, price_btce, price_ethe, price_ltcfinex, price_btcfinex, price_ethfinex))
+    print("ltce {} btce {} ethe {}\nltcfinex {} btcfinex {} ethfinex {}\nltcfinex {} btcfinex {} ethfinex {}\n".format(price_ltce, price_btce, price_ethe, price_ltcfinex, price_btcfinex, price_ethfinex, price_ltcdax, price_btcdax, price_ethdax))
 
 
 def main():
