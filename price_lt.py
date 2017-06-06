@@ -60,7 +60,7 @@ def tick():
         maximum_exchange = "gdax"
         ltc_maxratio = price_ltcdax / price_btcdax
     
-    print("minimum is {} USD at {} (L/B: {}) where maximum is {} USD at {} (L/B: {}) ltc proportion differential >> ".format(price_btc.min(), minimum_exchange, ltc_minratio, price_btc.max(), maximum_exchange, ltc_maxratio, ltc_maxratio - ltc_minratio))
+    print("minimum is {} USD at {} (L/B: {}) where maximum is {} USD at {} (L/B: {}) ltc proportion differential >> {}".format(price_btc.min(), minimum_exchange, ltc_minratio, price_btc.max(), maximum_exchange, ltc_maxratio, ltc_maxratio - ltc_minratio))
     
     tickCount += 1;
     #print("ltce {} btce {} ethe {} [req {}ms]\nltcfinex {} btcfinex {} ethfinex {}[req {}ms]\nltcdax {} btcdax {} ethdax {}[req {}ms]\n".format(price_ltce, price_btce, price_ethe, (ticker_ethe.elapsed.total_seconds() * 1000), price_ltcfinex, price_btcfinex, price_ethfinex, (ticker_ethfinex.elapsed.total_seconds() * 1000), price_ltcdax, price_btcdax, price_ethdax, (ticker_ethdax.elapsed.total_seconds() * 1000)))
