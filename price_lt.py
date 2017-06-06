@@ -42,13 +42,13 @@ def tick():
     
     if price_btc.min() == float(ticker_btce.json()['btc_usd']['last']):
         minimum_exchange = "btc-e"
-        ltc_minration = price_ltce / price_btce
+        ltc_minratio = price_ltce / price_btce
     elif price_btc.min() == float(ticker_btcfinex.json()['last_price']):
         minimum_exchange = "bitfinex"
-        ltc_minration = price_ltcfinex / price_btcfinex
+        ltc_minratio = price_ltcfinex / price_btcfinex
     elif price_btc.min() == float(ticker_btcdax.json()['price']):
         minimum_exchange = "gdax"
-        ltc_minration = price_ltcdax / price_btcdax
+        ltc_minratio = price_ltcdax / price_btcdax
         
     if price_btc.max() == float(ticker_btce.json()['btc_usd']['last']):
         maximum_exchange = "btc-e"
