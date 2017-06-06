@@ -33,9 +33,6 @@ def tick():
     price_btcdax = float(ticker_btcdax.json()['price'])
     price_ethdax = float(ticker_ethdax.json()['price'])
     
-    maximum_exchange = "NULL"
-    minimum_exchange = "NULL"
-    
     price_btc = np.array([ float(ticker_btce.json()['btc_usd']['last']), 
                            float(ticker_btcfinex.json()['last_price']), 
                            float(ticker_btcdax.json()['price']) ])
@@ -43,24 +40,30 @@ def tick():
     if price_btc.min() == float(ticker_btce.json()['btc_usd']['last']):
         minimum_exchange = "btc-e"
         ltc_minratio = price_ltce / price_btce
+        ltc_min = price_ltce
     elif price_btc.min() == float(ticker_btcfinex.json()['last_price']):
         minimum_exchange = "bitfinex"
         ltc_minratio = price_ltcfinex / price_btcfinex
+        ltc_min = price_ltcfinex
     elif price_btc.min() == float(ticker_btcdax.json()['price']):
         minimum_exchange = "gdax"
         ltc_minratio = price_ltcdax / price_btcdax
+        ltc_min = price_ltcdax
         
     if price_btc.max() == float(ticker_btce.json()['btc_usd']['last']):
         maximum_exchange = "btc-e"
         ltc_maxratio = price_ltce / price_btce
+        ltc_max = price_ltce
     elif price_btc.max() == float(ticker_btcfinex.json()['last_price']):
         maximum_exchange = "bitfinex"
         ltc_maxratio = price_ltcfinex / price_btcfinex
+        ltc_max = price_ltcfinex
     elif price_btc.max() == float(ticker_btcdax.json()['price']):
         maximum_exchange = "gdax"
         ltc_maxratio = price_ltcdax / price_btcdax
+        ltc_max = price_ltcdax
     
-    print("minimum is {} USD at {} (L/B: {}) where maximum is {} USD at {} (L/B: {}) ltc proportion differential >> {:f}".format(price_btc.min(), minimum_exchange, ltc_minratio, price_btc.max(), maximum_exchange, ltc_maxratio, ltc_maxratio - ltc_minratio))
+    print("minimum is {} USD at {} (LTC: {} USD) where maximum is {} USD at {} (LTC: {} USD) ltc proportion differential >> {:f}".format(price_btc.min(), minimum_exchange, ltc_min, price_btc.max(), maximum_exchange, ltc_max, ltc_maxratio - ltc_minratio))
     
     tickCount += 1;
     #print("ltce {} btce {} ethe {} [req {}ms]\nltcfinex {} btcfinex {} ethfinex {}[req {}ms]\nltcdax {} btcdax {} ethdax {}[req {}ms]\n".format(price_ltce, price_btce, price_ethe, (ticker_ethe.elapsed.total_seconds() * 1000), price_ltcfinex, price_btcfinex, price_ethfinex, (ticker_ethfinex.elapsed.total_seconds() * 1000), price_ltcdax, price_btcdax, price_ethdax, (ticker_ethdax.elapsed.total_seconds() * 1000)))
