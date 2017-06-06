@@ -5,19 +5,24 @@ from apscheduler.schedulers.blocking import BlockingScheduler
 
 tickCount = 0;
 
-
 def tick():
     global tickCount 
-    ticker = requests.get('https://btc-e.com/api/3/ticker/ltc_usd').json()
-    price = float(ticker['ltc_usd']['last'])
+    ticker_ltce = requests.get('https://btc-e.com/api/3/ticker/ltc_usd').json()
+    ticker_btce = requests.get('https://btc-e.com/api/3/ticker/btc_usd').json()
+    ticker_ethe = requests.get('https://btc-e.com/api/3/ticker/eth_usd').json()
+    
+    price_ltce = float(ticker_ltce['ltc_usd']['last'])
+    price_btce = float(ticker_btce['btc_usd']['last'])
+    price_ethe = float(ticker_ethe['eth_usd']['last'])
+    
     tickCount += 1;
-    print("##LTC## {}".format(price))
+    print("ltc {} btc {} eth {}".format(price_ltce, price_btce, price_ethe))
 
 
 def main():
     """Run tick() at the interval of every ten seconds."""
     scheduler = BlockingScheduler(timezone=utc)
-    scheduler.add_job(tick, 'interval', seconds=10)
+    scheduler.add_job(tick, 'interval', seconds=1)
     scheduler.start()
 
 
