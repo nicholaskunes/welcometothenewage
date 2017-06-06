@@ -33,7 +33,7 @@ def tick():
     price_ethdax = float(ticker_ethdax['price'])
     
     tickCount += 1;
-    print("ltce {} btce {} ethe {}\nltcfinex {} btcfinex {} ethfinex {}\nltcdax {} btcdax {} ethdax {}\n".format(price_ltce, price_btce, price_ethe, price_ltcfinex, price_btcfinex, price_ethfinex, price_ltcdax, price_btcdax, price_ethdax))
+    print("ltce {} btce {} ethe {} [req {}ms]\nltcfinex {} btcfinex {} ethfinex {}[req {}ms]\nltcdax {} btcdax {} ethdax {}[req {}ms]\n".format(price_ltce, price_btce, price_ethe, ticker_ethe.elapsed.total_seconds(), price_ltcfinex, price_btcfinex, price_ethfinex, ticker_ethfinex.elapsed.total_seconds(), price_ltcdax, price_btcdax, price_ethdax, ticker_ethdax.elapsed.total_seconds()))
 
 
 def main():
