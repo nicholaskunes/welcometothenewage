@@ -45,14 +45,14 @@ def tick():
     elif price_btc.min() == float(ticker_btcfinex.json()['last_price']):
         minimum_exchange = "bitfinex"
     elif price_btc.min() == float(ticker_btcdax.json()['price']):
-        minimum_exchange == "gdax"
+        minimum_exchange = "gdax"
         
     if price_btc.max() == float(ticker_btce.json()['btc_usd']['last']):
         maximum_exchange = "btc-e"
     elif price_btc.max() == float(ticker_btcfinex.json()['last_price']):
         maximum_exchange = "bitfinex"
     elif price_btc.max() == float(ticker_btcdax.json()['price']):
-        maximum_exchange == "gdax"
+        maximum_exchange = "gdax"
     
     print("minimum is {} USD at {} where maximum is {} USD at {}".format(price_btc.min(), minimum_exchange, price_btc.max(), maximum_exchange))
     
