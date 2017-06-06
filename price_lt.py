@@ -25,7 +25,7 @@ def tick():
     price_ethfinex = float(ticker_ethfinex['last_price'])
     
     tickCount += 1;
-    print("ltc {} btc {} eth {}".format(price_ltce, price_btce, price_ethe))
+    print("ltce {} btce {} ethe {}\n".format(price_ltce, price_btce, price_ethe, price_ltcfinex, price_btcfinex, price_ethfinex))
 
 
 def main():
