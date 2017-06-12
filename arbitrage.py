@@ -66,14 +66,15 @@ def tick():
     print("minimum is {} USD at {} (LTC: {} USD) where maximum is {} USD at {} (LTC: {} USD) ltc proportion differential >> {:f}".format(price_btc.min(), minimum_exchange, ltc_min, price_btc.max(), maximum_exchange, ltc_max, ltc_maxratio - ltc_minratio))
     
     tickCount += 1;
-    #print("ltce {} btce {} ethe {} [req {}ms]\nltcfinex {} btcfinex {} ethfinex {}[req {}ms]\nltcdax {} btcdax {} ethdax {}[req {}ms]\n".format(price_ltce, price_btce, price_ethe, (ticker_ethe.elapsed.total_seconds() * 1000), price_ltcfinex, price_btcfinex, price_ethfinex, (ticker_ethfinex.elapsed.total_seconds() * 1000), price_ltcdax, price_btcdax, price_ethdax, (ticker_ethdax.elapsed.total_seconds() * 1000)))
 
 
 def main():
-    """Run tick() at the interval of every ten seconds."""
     scheduler = BlockingScheduler(timezone=utc)
     scheduler.add_job(tick, 'interval', seconds=1)
-    scheduler.start()
+    try:
+        scheduler.start()
+    except (KeyboardInterrupt, SystemExit):
+        pass
 
 
 if __name__ == '__main__':
