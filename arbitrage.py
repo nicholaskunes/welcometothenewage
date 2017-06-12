@@ -1,6 +1,5 @@
 import requests
 from pytz import utc
-import logging
 from datetime import datetime
 from apscheduler.schedulers.blocking import BlockingScheduler
 import numpy as np
@@ -70,7 +69,6 @@ def tick():
 
 
 def main():
-    logging.basicConfig()
     scheduler = BlockingScheduler(timezone=utc)
     scheduler.add_job(tick, 'interval', seconds=1)
     try:
