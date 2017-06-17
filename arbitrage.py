@@ -37,15 +37,27 @@ def tick():
     threshold_xrp = (float(ticker_btcusd.json()['bid']) - ((1 / float(ticker_xrpbtc.json()['bid'])) * float(ticker_xrpusd.json()['bid']))) - ((float(ticker_btcusd.json()['bid']) * 0.002) * 3)
     threshold_dsh = (float(ticker_btcusd.json()['bid']) - ((1 / float(ticker_dshbtc.json()['bid'])) * float(ticker_dshusd.json()['bid']))) - ((float(ticker_btcusd.json()['bid']) * 0.002) * 3)
 
+    threshold = 1
     
-    #if price_btc.min() == float(ticker_btce.json()['btc_usd']['buy']):
+    thresholds = np.array([ threshold_zec, threshold_xmr, threshold_xrp, threshold_dsh ])
     
+    if thresholds.max() == threshold_zec and threshold_zec >= threshold:
+        altcoin = "zec"
+    elif thresholds.max() == threshold_xmr and threshold_xmr >= threshold:
+        altcoin = "xmr"
+    elif thresholds.max() == threshold_xrp and threshold_xrp >= threshold:
+        altcoin = "xrp"        
+    elif thresholds.max() == threshold_dsh and threshold_dsh >= threshold:
+        altcoin = "dsh"
+    else
+        altcoin = "null"
+        
     date_format='%m/%d/%Y %H:%M:%S %Z'
     date = datetime.now(tz=pytz.utc)
     date = date.astimezone(timezone('US/Pacific'))
     
-    
-    print("[{}] zec: {} || xmr: {} || xrp: {} || dsh: {}".format(date.strftime(date_format), threshold_zec, threshold_xmr, threshold_xrp, threshold_dsh))
+    if altcoin != "null":
+        print("[{}] {} with profit {}".format(date.strftime(date_format), altcoin, thresholds.max()))
     
     tickCount += 1
 
