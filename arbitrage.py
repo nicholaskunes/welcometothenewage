@@ -1,5 +1,7 @@
 import requests
 from pytz import utc
+from pytz import timezone
+import pytz
 from datetime import datetime
 from apscheduler.schedulers.blocking import BlockingScheduler
 import numpy as np
@@ -38,8 +40,12 @@ def tick():
     
     #if price_btc.min() == float(ticker_btce.json()['btc_usd']['buy']):
     
+    date_format='%m/%d/%Y %H:%M:%S %Z'
+    date = datetime.now(tz=pytz.utc)
+    date = date.astimezone(timezone('US/Pacific'))
     
-    print("zec: {} || xmr: {} || xrp: {} || dsh: {}".format(threshold_zec, threshold_xmr, threshold_xrp, threshold_dsh))
+    
+    print("[{}] zec: {} || xmr: {} || xrp: {} || dsh: {}".format(date.strftime(date_format), threshold_zec, threshold_xmr, threshold_xrp, threshold_dsh))
     
     tickCount += 1
 
