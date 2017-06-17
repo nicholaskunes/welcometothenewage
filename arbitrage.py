@@ -49,7 +49,7 @@ def tick():
         altcoin = "xrp"        
     elif thresholds.max() == threshold_dsh and threshold_dsh >= threshold:
         altcoin = "dsh"
-    else
+    else:
         altcoin = "null"
         
     date_format='%m/%d/%Y %H:%M:%S %Z'
