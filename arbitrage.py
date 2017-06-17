@@ -39,7 +39,8 @@ def tick():
     #if price_btc.min() == float(ticker_btce.json()['btc_usd']['buy']):
     
     
-    
+    print("{0:{1}^30}".format(" arbitrage-bot ", "="))
+    print("{0:{1}^30}".format(" usd > zec/xmr/xrp/dsh > btc > usd ", "="))
     print("zec: {} || xmr: {} || xrp: {} || dsh: {}".format(threshold_zec, threshold_xmr, threshold_xrp, threshold_dsh))
     
     tickCount += 1
