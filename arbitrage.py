@@ -45,8 +45,10 @@ def tick():
 
 
 def main():
+    print("{0:{1}^60}".format("", "="))
     print("{0:{1}^60}".format(" arbitrage-bot ", "="))
     print("{0:{1}^60}".format(" usd > zec/xmr/xrp/dsh > btc > usd ", "="))
+    print("{0:{1}^60}".format("", "="))
     scheduler = BlockingScheduler(timezone=utc)
     scheduler.add_job(tick, 'interval', seconds=10)
     try:
