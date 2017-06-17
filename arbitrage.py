@@ -8,6 +8,8 @@ tickCount = 0;
 
 def tick():
     global tickCount 
+	
+	#test
     
     ticker_ltce = requests.get('https://btc-e.com/api/3/ticker/ltc_usd')
     ticker_btce = requests.get('https://btc-e.com/api/3/ticker/btc_usd')
