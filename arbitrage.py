@@ -11,6 +11,7 @@ def tick():
 	
 	#theory:
 	#usd > alt > btc > usd
+    
 	
 	#BITFINEX PUBLIC TICKER ALT/USD
 	ticker_btcusd = requests.get('https://api.bitfinex.com/v1/pubticker/btcusd')
