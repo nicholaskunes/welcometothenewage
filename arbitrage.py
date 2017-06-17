@@ -9,63 +9,34 @@ tickCount = 0;
 def tick():
     global tickCount 
 	
-    ticker_ltce = requests.get('https://btc-e.com/api/3/ticker/ltc_usd')
-    ticker_btce = requests.get('https://btc-e.com/api/3/ticker/btc_usd')
-    ticker_ethe = requests.get('https://btc-e.com/api/3/ticker/eth_usd')
+	#theory:
+	#usd > alt > btc > usd
+	
+	#BITFINEX PUBLIC TICKER ALT/USD
+	ticker_btcusd = requests.get('https://api.bitfinex.com/v1/pubticker/btcusd');
+	ticker_zecusd = requests.get('https://api.bitfinex.com/v1/pubticker/zecusd');
+	ticker_xmrusd = requests.get('https://api.bitfinex.com/v1/pubticker/xmrusd');
+	ticker_xrpusd = requests.get('https://api.bitfinex.com/v1/pubticker/xrpusd');
+	ticker_dshusd = requests.get('https://api.bitfinex.com/v1/pubticker/dshusd');
+	
+	#BITFINEX PUBLIC TICKER ALT/BTC
+	ticker_zecbtc = requests.get('https://api.bitfinex.com/v1/pubticker/zecbtc');
+	ticker_xmrbtc = requests.get('https://api.bitfinex.com/v1/pubticker/xmrbtc');
+	ticker_xrpbtc = requests.get('https://api.bitfinex.com/v1/pubticker/xrpbtc');
+	ticker_dshbtc = requests.get('https://api.bitfinex.com/v1/pubticker/dshbtc');
+	
+	#trigger theory:
+	#threshold = (btc_price - ((1 / alt_btc_price) * alt_price)) - ((btc_price * 0.002) * 3);
+	
+	#BITFINEX TRIGGERS
+    threshold_zec = (float(ticker_btcusd.json()['bid']) - ((1 / float(ticker_zecbtc.json()['bid'])) * float(ticker_zecusd.json()['bid']))) - ((float(ticker_btcusd.json()['bid']) * 0.002) * 3);
+
     
-    ticker_ltcfinex = requests.get('https://api.bitfinex.com/v1/pubticker/ltcusd')
-    ticker_btcfinex = requests.get('https://api.bitfinex.com/v1/pubticker/btcusd')
-    ticker_ethfinex = requests.get('https://api.bitfinex.com/v1/pubticker/ethusd')
-    
-    ticker_ltcdax = requests.get('https://api.gdax.com/products/LTC-USD/ticker')
-    ticker_btcdax = requests.get('https://api.gdax.com/products/BTC-USD/ticker')
-    ticker_ethdax = requests.get('https://api.gdax.com/products/ETH-USD/ticker')
-    
-    price_ltce = float(ticker_ltce.json()['ltc_usd']['buy'])
-    price_btce = float(ticker_btce.json()['btc_usd']['buy'])
-    price_ethe = float(ticker_ethe.json()['eth_usd']['buy'])
-    
-    price_ltcfinex = float(ticker_ltcfinex.json()['bid'])
-    price_btcfinex = float(ticker_btcfinex.json()['bid'])
-    price_ethfinex = float(ticker_ethfinex.json()['bid'])
-    
-    price_ltcdax = float(ticker_ltcdax.json()['bid'])
-    price_btcdax = float(ticker_btcdax.json()['bid'])
-    price_ethdax = float(ticker_ethdax.json()['bid'])
-    
-    price_btc = np.array([ float(ticker_btce.json()['btc_usd']['buy']), 
-                           float(ticker_btcfinex.json()['bid']), 
-                           float(ticker_btcdax.json()['bid']) ])
-    
-    if price_btc.min() == float(ticker_btce.json()['btc_usd']['buy']):
-        minimum_exchange = "btc-e"
-        ltc_minratio = price_ltce / price_btce
-        ltc_min = price_ltce
-    elif price_btc.min() == float(ticker_btcfinex.json()['bid']):
-        minimum_exchange = "bitfinex"
-        ltc_minratio = price_ltcfinex / price_btcfinex
-        ltc_min = price_ltcfinex
-    elif price_btc.min() == float(ticker_btcdax.json()['bid']):
-        minimum_exchange = "gdax"
-        ltc_minratio = price_ltcdax / price_btcdax
-        ltc_min = price_ltcdax
-        
-    if price_btc.max() == float(ticker_btce.json()['btc_usd']['buy']):
-        maximum_exchange = "btc-e"
-        ltc_maxratio = price_ltce / price_btce
-        ltc_max = price_ltce
-    elif price_btc.max() == float(ticker_btcfinex.json()['bid']):
-        maximum_exchange = "bitfinex"
-        ltc_maxratio = price_ltcfinex / price_btcfinex
-        ltc_max = price_ltcfinex
-    elif price_btc.max() == float(ticker_btcdax.json()['bid']):
-        maximum_exchange = "gdax"
-        ltc_maxratio = price_ltcdax / price_btcdax
-        ltc_max = price_ltcdax
+    #if price_btc.min() == float(ticker_btce.json()['btc_usd']['buy']):
     
     
 	
-	print("minimum is {} USD at {} (LTC: {} USD) where maximum is {} USD at {} (LTC: {} USD) ltc proportion differential >> {:f}".format(price_btc.min(), minimum_exchange, ltc_min, price_btc.max(), maximum_exchange, ltc_max, ltc_maxratio - ltc_minratio))
+	print("zec threshold is {}".format(threshold_zec))
     
     tickCount += 1;
 
