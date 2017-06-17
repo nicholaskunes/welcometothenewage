@@ -31,7 +31,10 @@ def tick():
     
     #BITFINEX TRIGGERS
     threshold_zec = (float(ticker_btcusd.json()['bid']) - ((1 / float(ticker_zecbtc.json()['bid'])) * float(ticker_zecusd.json()['bid']))) - ((float(ticker_btcusd.json()['bid']) * 0.002) * 3)
-    
+    threshold_xmr = (float(ticker_btcusd.json()['bid']) - ((1 / float(ticker_xmrbtc.json()['bid'])) * float(ticker_xmrusd.json()['bid']))) - ((float(ticker_btcusd.json()['bid']) * 0.002) * 3)
+    threshold_xrp = (float(ticker_btcusd.json()['bid']) - ((1 / float(ticker_xrpbtc.json()['bid'])) * float(ticker_xrpusd.json()['bid']))) - ((float(ticker_btcusd.json()['bid']) * 0.002) * 3)
+    threshold_dsh = (float(ticker_btcusd.json()['bid']) - ((1 / float(ticker_dshbtc.json()['bid'])) * float(ticker_dshusd.json()['bid']))) - ((float(ticker_btcusd.json()['bid']) * 0.002) * 3)
+
     
     #if price_btc.min() == float(ticker_btce.json()['btc_usd']['buy']):
     
@@ -44,7 +47,7 @@ def tick():
 
 def main():
     scheduler = BlockingScheduler(timezone=utc)
-    scheduler.add_job(tick, 'interval', seconds=1)
+    scheduler.add_job(tick, 'interval', seconds=10)
     try:
         scheduler.start()
     except (KeyboardInterrupt, SystemExit):
