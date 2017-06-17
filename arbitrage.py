@@ -40,7 +40,7 @@ def tick():
     
     
     
-    print("zec threshold is {}".format(threshold_zec))
+    print("zec: {} || xmr: {} || xrp: {} || dsh: {}".format(threshold_zec, threshold_xmr, threshold_xrp, threshold_dsh))
     
     tickCount += 1
 
