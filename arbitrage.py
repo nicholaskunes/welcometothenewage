@@ -5,11 +5,51 @@ import pytz
 from datetime import datetime
 from apscheduler.schedulers.blocking import BlockingScheduler
 import numpy as np
+import threading
+import time
 
-tickCount = 0;
+tickCount = 0
+cycling = False
+
+def zec_cycle():
+    global cycling
+    
+    print("zec cycle")
+    
+    cycling = True
+    time.sleep(14)
+    cycling = False
+    
+def xmr_cycle():
+    global cycling
+    
+    print("xmr cycle")
+    
+    cycling = True
+    time.sleep(14)
+    cycling = False
+    
+def xrp_cycle():
+    global cycling
+    
+    print("xrp cycle")
+    
+    cycling = True
+    time.sleep(14)
+    cycling = False
+
+def dsh_cycle():
+    global cycling
+    
+    print("dsh cycle")
+    
+    cycling = True
+    time.sleep(14)
+    cycling = False    
 
 def tick():
     global tickCount 
+    global cycling
     
     #theory:
     #usd > alt > btc > usd
@@ -40,24 +80,35 @@ def tick():
     threshold = 10
     
     thresholds = np.array([ threshold_zec, threshold_xmr, threshold_xrp, threshold_dsh ])
-    
-    if thresholds.max() == threshold_zec and threshold_zec >= threshold:
+        
+    if thresholds.max() == threshold_zec and threshold_zec >= threshold and !cycling:
         altcoin = "zec"
-    elif thresholds.max() == threshold_xmr and threshold_xmr >= threshold:
+        t = threading.Thread(target=zec_cycle)
+    elif thresholds.max() == threshold_xmr and threshold_xmr >= threshold and !cycling:
         altcoin = "xmr"
-    elif thresholds.max() == threshold_xrp and threshold_xrp >= threshold:
-        altcoin = "xrp"        
-    elif thresholds.max() == threshold_dsh and threshold_dsh >= threshold:
+        t = threading.Thread(target=xmr_cycle)
+    elif thresholds.max() == threshold_xrp and threshold_xrp >= threshold and !cycling:
+        altcoin = "xrp"      
+        t = threading.Thread(target=xrp_cycle)        
+    elif thresholds.max() == threshold_dsh and threshold_dsh >= threshold and !cycling:
         altcoin = "dsh"
-    else:
+        t = threading.Thread(target=dsh_cycle)
+    elif !cycling:
         altcoin = "null"
+    else:
+        altcoin = "cycling"
+        
+    t.daemon = True
+    t.start()    
         
     date_format='%m/%d/%Y %H:%M:%S %Z'
     date = datetime.now(tz=pytz.utc)
     date = date.astimezone(timezone('US/Pacific'))
     
-    if altcoin != "null":
-        print("[{}] {} with profit {}".format(date.strftime(date_format), altcoin, thresholds.max()))
+    if altcoin != "null" and altcoin != "cycling":
+        print("[{}] started cycle on {} with profit {} on tick {}".format(date.strftime(date_format), altcoin, thresholds.max(), tickCount))
+    elif altcoin == "cycling":
+        print("[{}] currently cycling...".format(date.strftime(date_format)))
     
     tickCount += 1
 
