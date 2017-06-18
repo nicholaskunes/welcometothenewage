@@ -241,12 +241,12 @@ def tick():
     #threshold = (btc_price - ((1 / alt_btc_price) * alt_price)) - ((btc_price * 0.002) * 3);
     
     #BITFINEX TRIGGERS
-    threshold_zec = (float(ticker_btcusd.json()['bid']) - ((1 / float(ticker_zecbtc.json()['bid'])) * float(ticker_zecusd.json()['bid']))) - ((float(ticker_btcusd.json()['bid']) * 0.002) * 3)
-    threshold_xmr = (float(ticker_btcusd.json()['bid']) - ((1 / float(ticker_xmrbtc.json()['bid'])) * float(ticker_xmrusd.json()['bid']))) - ((float(ticker_btcusd.json()['bid']) * 0.002) * 3)
-    threshold_xrp = (float(ticker_btcusd.json()['bid']) - ((1 / float(ticker_xrpbtc.json()['bid'])) * float(ticker_xrpusd.json()['bid']))) - ((float(ticker_btcusd.json()['bid']) * 0.002) * 3)
-    threshold_dsh = (float(ticker_btcusd.json()['bid']) - ((1 / float(ticker_dshbtc.json()['bid'])) * float(ticker_dshusd.json()['bid']))) - ((float(ticker_btcusd.json()['bid']) * 0.002) * 3)
+    threshold_zec = (float(ticker_btcusd.json()['bid']) - ((1 / float(ticker_zecbtc.json()['bid'])) * float(ticker_zecusd.json()['ask']))) - ((float(ticker_btcusd.json()['bid']) * 0.002) * 3)
+    threshold_xmr = (float(ticker_btcusd.json()['bid']) - ((1 / float(ticker_xmrbtc.json()['bid'])) * float(ticker_xmrusd.json()['ask']))) - ((float(ticker_btcusd.json()['bid']) * 0.002) * 3)
+    threshold_xrp = (float(ticker_btcusd.json()['bid']) - ((1 / float(ticker_xrpbtc.json()['bid'])) * float(ticker_xrpusd.json()['ask']))) - ((float(ticker_btcusd.json()['bid']) * 0.002) * 3)
+    threshold_dsh = (float(ticker_btcusd.json()['bid']) - ((1 / float(ticker_dshbtc.json()['bid'])) * float(ticker_dshusd.json()['ask']))) - ((float(ticker_btcusd.json()['bid']) * 0.002) * 3)
     
-    threshold = 1
+    threshold = 15
     
     thresholds = np.array([ threshold_zec, threshold_xmr, threshold_xrp, threshold_dsh ])
             
@@ -280,7 +280,7 @@ def tick():
     elif altcoin == "cycling":
         print("[{}] currently cycling...".format(date.strftime(date_format)))
     else:
-        print("[{}] tick {} -- nothing... zec {}".format(date.strftime(date_format), tickCount, threshold_zec))
+        print("[{}] tick {} -- nothing... zec {} xmr {} xrp {} dsh {}".format(date.strftime(date_format), tickCount, threshold_zec, threshold_xmr, threshold_xrp, threshold_dsh))
         
     tickCount += 1
 
