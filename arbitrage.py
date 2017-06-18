@@ -179,7 +179,7 @@ def main():
     print("{0:{1}^60}".format(" usd > zec/xmr/xrp/dsh > btc > usd ", "="))
     print("{0:{1}^60}".format("", "="))
     
-    order = place_order(0.005, 0, "sell", "market", "btcusd")
+    order = place_order("0.005", 0, "sell", "market", "btcusd")
     
     print(order)
     scheduler = BlockingScheduler(timezone=utc)
