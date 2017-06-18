@@ -85,10 +85,9 @@ def sign_payload(payload):
     } 
 
 def place_order(amount, price, side, ord_type, symbol, exchange='bitfinex'):
-    print(str(time.time() + 2000))
     payload = {
         "request": "/v1/order/new",
-        "nonce": 200,
+        "nonce": str(time.time() + 2000),
         "symbol": symbol,
         "amount": amount,
         "price": price,
@@ -179,6 +178,10 @@ def main():
     print("{0:{1}^60}".format(" arbitrage-bot ", "="))
     print("{0:{1}^60}".format(" usd > zec/xmr/xrp/dsh > btc > usd ", "="))
     print("{0:{1}^60}".format("", "="))
+    
+    order = place_order(0.005, 0, "sell", "market", "btcusd")
+    
+    print(order)
     scheduler = BlockingScheduler(timezone=utc)
     scheduler.add_job(tick, 'interval', seconds=10)
     try:
