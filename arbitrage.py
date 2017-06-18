@@ -21,8 +21,8 @@ def zec_cycle():
 
     ticker = requests.get('https://api.bitfinex.com/v1/pubticker/zecusd') 
     ticker2 = requests.get('https://api.bitfinex.com/v1/pubticker/btcusd')
-    proportion = (33 / float(ticker.json()['bid']))
-    proportion_btc = (33 / float(ticker2.json()['bid']))
+    proportion = (32 / float(ticker.json()['bid']))
+    proportion_btc = (32 / float(ticker2.json()['bid']))
 
     order = place_order(str(proportion), str(time.time()), "buy", "exchange market", "zecusd")
     print(order['order_id'])
@@ -45,8 +45,8 @@ def xmr_cycle():
 
     ticker = requests.get('https://api.bitfinex.com/v1/pubticker/xmrusd')    
     ticker2 = requests.get('https://api.bitfinex.com/v1/pubticker/btcusd')
-    proportion = (33 / float(ticker.json()['bid']))
-    proportion_btc = (33 / float(ticker2.json()['bid']))
+    proportion = (32 / float(ticker.json()['bid']))
+    proportion_btc = (32 / float(ticker2.json()['bid']))
 
     order = place_order(str(proportion), str(time.time()), "buy", "exchange market", "xmrusd")
     print(order['order_id'])
@@ -69,8 +69,8 @@ def xrp_cycle():
 
     ticker = requests.get('https://api.bitfinex.com/v1/pubticker/xrpusd')    
     ticker2 = requests.get('https://api.bitfinex.com/v1/pubticker/btcusd')
-    proportion = (33 / float(ticker.json()['bid']))
-    proportion_btc = (33 / float(ticker2.json()['bid']))
+    proportion = (32 / float(ticker.json()['bid']))
+    proportion_btc = (32 / float(ticker2.json()['bid']))
 
     order = place_order(str(proportion), str(time.time()), "buy", "exchange market", "xrpusd")
     print(order['order_id'])
@@ -93,8 +93,9 @@ def dsh_cycle():
 
     ticker = requests.get('https://api.bitfinex.com/v1/pubticker/dshusd')    
     ticker2 = requests.get('https://api.bitfinex.com/v1/pubticker/btcusd')
-    proportion = (33 / float(ticker.json()['bid']))
-    proportion_btc = (33 / float(ticker2.json()['bid']))
+    proportion = (32 / float(ticker.json()['bid']))
+    proportion_btc = (32 / float(ticker2.json()['bid']))
+    proportion_btc = (32 / float(ticker2.json()['bid']))
 
     order = place_order(str(proportion), str(time.time()), "buy", "exchange market", "dshusd")
     print(order['order_id'])
