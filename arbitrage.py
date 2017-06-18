@@ -49,16 +49,19 @@ def xmr_cycle():
     proportion_btc = (32 / float(ticker2.json()['bid']))
 
     order = place_order(str(proportion), str(time.time()), "buy", "exchange market", "xmrusd")
+    print(order)
     print(order['order_id'])
     
-    time.sleep(1)
+    time.sleep(2)
 
     order = place_order(str(proportion), str(time.time()), "sell", "exchange market", "xmrbtc")
+    print(order)
     print(order['order_id'])
     
-    time.sleep(1)
+    time.sleep(2)
     
     order = place_order(str(proportion_btc), str(time.time()), "sell", "exchange market", "btcusd")
+    print(order)
     print(order['order_id'])
             
     cycling = False
