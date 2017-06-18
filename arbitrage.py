@@ -180,7 +180,7 @@ def main():
     print("{0:{1}^60}".format("", "="))
     
     #order = place_order("0.01", str(time.time()), "sell", "exchange market", "btcusd")
-    order = place_order("0.01", str(time.time()), "buy", "exchange market", "btcusd")
+    order = place_order("0.0095", str(time.time()), "buy", "exchange market", "btcusd")
     
     print(order)
     scheduler = BlockingScheduler(timezone=utc)
