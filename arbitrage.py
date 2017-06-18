@@ -17,35 +17,57 @@ cycling = False
 def zec_cycle():
     global cycling    
     cycling = True
-    
-    #def place_order(amount, price, side, ord_type, symbol='btcusd', exchange='bitfinex')
-    
-    ticker_zecusd = requests.get('https://api.bitfinex.com/v1/pubticker/zecusd')    
-    zecusd_price = float(ticker_zecusd.json()['bid'])   
-    proportion_zecusd = (10 / zecusd_price)
 
-    order = place_order(proportion_zecusd, 0, "buy", "market", "zecusd")
+    ticker = requests.get('https://api.bitfinex.com/v1/pubticker/zecusd')    
+    price = float(ticker.json()['bid'])   
+    proportion = (10 / price)
+
+    order = place_order(proportion, 0, "buy", "market", "zecusd")
     
     print(order)
-
+    
     cycling = False
     
 def xmr_cycle():
     global cycling    
     cycling = True
 
+    ticker = requests.get('https://api.bitfinex.com/v1/pubticker/xmrusd')    
+    price = float(ticker.json()['bid'])   
+    proportion = (10 / price)
+
+    order = place_order(proportion, 0, "buy", "market", "xmrusd")
+    
+    print(order)
+    
     cycling = False
     
 def xrp_cycle():
     global cycling    
     cycling = True
 
+    ticker = requests.get('https://api.bitfinex.com/v1/pubticker/xrpusd')    
+    price = float(ticker.json()['bid'])   
+    proportion = (10 / price)
+
+    order = place_order(proportion, 0, "buy", "market", "xrpusd")
+    
+    print(order)
+    
     cycling = False
 
 def dsh_cycle():
     global cycling    
     cycling = True
 
+    ticker_zecusd = requests.get('https://api.bitfinex.com/v1/pubticker/dshusd')    
+    zecusd_price = float(ticker_zecusd.json()['bid'])   
+    proportion_zecusd = (10 / zecusd_price)
+
+    order = place_order(proportion_zecusd, 0, "buy", "market", "dshusd")
+    
+    print(order)
+    
     cycling = False   
 
 
