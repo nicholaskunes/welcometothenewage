@@ -49,19 +49,16 @@ def xmr_cycle():
     proportion_btc = (32 / float(ticker2.json()['bid']))
 
     order = place_order(str(proportion), str(time.time()), "buy", "exchange market", "xmrusd")
-    print(order)
     print(order['order_id'])
     
-    time.sleep(2)
+    time.sleep(1)
 
     order = place_order(str(proportion), str(time.time()), "sell", "exchange market", "xmrbtc")
-    print(order)
     print(order['order_id'])
     
-    time.sleep(2)
+    time.sleep(1)
     
     order = place_order(str(proportion_btc), str(time.time()), "sell", "exchange market", "btcusd")
-    print(order)
     print(order['order_id'])
             
     cycling = False
@@ -179,42 +176,12 @@ def tick():
     threshold_xmr = (float(ticker_btcusd.json()['bid']) - ((1 / float(ticker_xmrbtc.json()['bid'])) * float(ticker_xmrusd.json()['bid']))) - ((float(ticker_btcusd.json()['bid']) * 0.002) * 3)
     threshold_xrp = (float(ticker_btcusd.json()['bid']) - ((1 / float(ticker_xrpbtc.json()['bid'])) * float(ticker_xrpusd.json()['bid']))) - ((float(ticker_btcusd.json()['bid']) * 0.002) * 3)
     threshold_dsh = (float(ticker_btcusd.json()['bid']) - ((1 / float(ticker_dshbtc.json()['bid'])) * float(ticker_dshusd.json()['bid']))) - ((float(ticker_btcusd.json()['bid']) * 0.002) * 3)
-
-    threshold = 1
     
-    thresholds = np.array([ threshold_zec, threshold_xmr, threshold_xrp, threshold_dsh ])
-        
-    if thresholds.max() == threshold_zec and threshold_zec >= threshold and cycling == False:
-        altcoin = "zec"
-        t = threading.Thread(target=zec_cycle)
-        t.start()    
-    elif thresholds.max() == threshold_xmr and threshold_xmr >= threshold and cycling == False:
-        altcoin = "xmr"
-        t = threading.Thread(target=xmr_cycle)
-        t.start() 
-    elif thresholds.max() == threshold_xrp and threshold_xrp >= threshold and cycling == False:
-        altcoin = "xrp"      
-        t = threading.Thread(target=xrp_cycle)  
-        t.start()         
-    elif thresholds.max() == threshold_dsh and threshold_dsh >= threshold and cycling == False:
-        altcoin = "dsh"
-        t = threading.Thread(target=dsh_cycle)
-        t.start() 
-    elif cycling == False:
-        altcoin = "null"
-    else:
-        altcoin = "cycling"
-        
     date_format='%m/%d/%Y %H:%M:%S %Z'
     date = datetime.now(tz=pytz.utc)
     date = date.astimezone(timezone('US/Pacific'))
     
-    if altcoin != "null" and altcoin != "cycling":
-        print("[{}] started cycle on {} with profit {} on tick {}".format(date.strftime(date_format), altcoin, thresholds.max(), tickCount))
-    elif altcoin == "cycling":
-        print("[{}] currently cycling...".format(date.strftime(date_format)))
-    else:
-        print("[{}] tick {} -- nothing... zec {}".format(date.strftime(date_format), tickCount, threshold_zec))
+    print("[{}] btcusd: {} xmrbtc: {} xmrusd: {} threshold_xmr {}".format(date.strftime(date_format), float(ticker_btcusd.json()['bid']), float(ticker_xmrbtc.json()['bid']), float(ticker_xmrusd.json()['bid']), threshold_xmr))
     
     tickCount += 1
 
