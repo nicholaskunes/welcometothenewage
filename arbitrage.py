@@ -169,6 +169,8 @@ def tick():
         print("[{}] started cycle on {} with profit {} on tick {}".format(date.strftime(date_format), altcoin, thresholds.max(), tickCount))
     elif altcoin == "cycling":
         print("[{}] currently cycling...".format(date.strftime(date_format)))
+    else:
+        print("[{}] tick {} -- nothing...".format(date.strftime(date_format), tickCount))
     
     tickCount += 1
 
