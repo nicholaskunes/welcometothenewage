@@ -11,7 +11,6 @@ import base64
 import hmac
 import hashlib
 import json
-from random import randint
 
 tickCount = 0
 cycling = False
@@ -86,10 +85,10 @@ def sign_payload(payload):
     } 
 
 def place_order(amount, price, side, ord_type, symbol, exchange='bitfinex'):
-    print(randint(0, time.time()) + time.time())
+    print(str(time.time() + 2000))
     payload = {
         "request": "/v1/order/new",
-        "nonce": randint(0, time.time()) + time.time(),
+        "nonce": 200,
         "symbol": symbol,
         "amount": amount,
         "price": price,
@@ -181,7 +180,7 @@ def main():
     print("{0:{1}^60}".format(" usd > zec/xmr/xrp/dsh > btc > usd ", "="))
     print("{0:{1}^60}".format("", "="))
     scheduler = BlockingScheduler(timezone=utc)
-    scheduler.add_job(tick, 'interval', seconds=10)
+    scheduler.add_job(tick, 'interval', seconds=5)
     try:
         scheduler.start()
     except (KeyboardInterrupt, SystemExit):
