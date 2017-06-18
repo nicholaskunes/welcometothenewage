@@ -93,7 +93,7 @@ def tick():
     elif thresholds.max() == threshold_dsh and threshold_dsh >= threshold and cycling == False:
         altcoin = "dsh"
         t = threading.Thread(target=dsh_cycle)
-    elif !cycling:
+    elif cycling == False:
         altcoin = "null"
     else:
         altcoin = "cycling"
