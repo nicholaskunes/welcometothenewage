@@ -170,7 +170,7 @@ def tick():
     elif altcoin == "cycling":
         print("[{}] currently cycling...".format(date.strftime(date_format)))
     else:
-        print("[{}] tick {} -- nothing...".format(date.strftime(date_format), tickCount))
+        print("[{}] tick {} -- nothing... zec {}".format(date.strftime(date_format), tickCount, threshold_zec))
     
     tickCount += 1
 
