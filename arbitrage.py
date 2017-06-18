@@ -25,7 +25,7 @@ def zec_cycle():
 
     order = place_order(str(proportion), str(time.time()), "buy", "exchange market", "zecusd")
     
-    print(['order_id'])
+    print(order['order_id'])
     
     cycling = False
     
@@ -39,7 +39,7 @@ def xmr_cycle():
 
     order = place_order(str(proportion), str(time.time()), "buy", "exchange market", "xmrusd")
     
-    print(['order_id'])
+    print(order['order_id'])
     
     cycling = False
     
@@ -53,7 +53,7 @@ def xrp_cycle():
 
     order = place_order(str(proportion), str(time.time()), "buy", "exchange market", "xrpusd")
     
-    print(['order_id'])
+    print(order['order_id'])
     
     cycling = False
 
@@ -67,7 +67,7 @@ def dsh_cycle():
 
     order = place_order(str(proportion), str(time.time()), "buy", "exchange market", "dshusd")
     
-    print(['order_id'])
+    print(order['order_id'])
     
     cycling = False   
 
