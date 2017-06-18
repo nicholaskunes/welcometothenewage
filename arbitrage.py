@@ -11,6 +11,7 @@ import base64
 import hmac
 import hashlib
 import json
+from random import randint
 
 tickCount = 0
 cycling = False
@@ -85,9 +86,10 @@ def sign_payload(payload):
     } 
 
 def place_order(amount, price, side, ord_type, symbol, exchange='bitfinex'):
+    print(time.time()) + time.time())
     payload = {
         "request": "/v1/order/new",
-        "nonce": rand(time.time()) * rand() + time.time(),
+        "nonce": rand(0, time.time()) + time.time(),
         "symbol": symbol,
         "amount": amount,
         "price": price,
