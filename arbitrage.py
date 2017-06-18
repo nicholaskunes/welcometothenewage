@@ -98,7 +98,6 @@ def tick():
     else:
         altcoin = "cycling"
         
-    t.daemon = True
     t.start()    
         
     date_format='%m/%d/%Y %H:%M:%S %Z'
