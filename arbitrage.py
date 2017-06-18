@@ -97,7 +97,7 @@ def place_order(amount, price, side, ord_type, symbol='btcusd', exchange='bitfin
     }
 
     signed_payload = sign_payload(payload)
-    r = requests.post("api.bitfinex.com/v1/order/new", headers=signed_payload, verify=True)
+    r = requests.post("https://api.bitfinex.com/v1/order/new", headers=signed_payload, verify=True)
     json_resp = r.json()
 
     try:
