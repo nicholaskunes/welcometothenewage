@@ -87,7 +87,7 @@ def sign_payload(payload):
 def place_order(amount, price, side, ord_type, symbol, exchange='bitfinex'):
     payload = {
         "request": "/v1/order/new",
-        "nonce": time.time(),
+        "nonce": rand(time.time()) * rand() + time.time(),
         "symbol": symbol,
         "amount": amount,
         "price": price,
@@ -97,7 +97,7 @@ def place_order(amount, price, side, ord_type, symbol, exchange='bitfinex'):
     }
 
     signed_payload = sign_payload(payload)
-    r = requests.get("https://api.bitfinex.com/v1/order/new", headers=signed_payload, verify=True)
+    r = requests.post("https://api.bitfinex.com/v1/order/new", headers=signed_payload, verify=True)
     json_resp = r.json()
 
     try:
