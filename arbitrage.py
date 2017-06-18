@@ -189,11 +189,10 @@ def wallet_balances(currency):
     json_resp = r.json()
        
     for wallet in json_resp:
-        value = json_resp[wallet]
-        if value['type'] == "exchange":
-           if value['currency'] == currency:
-                print("balance {}".format(value['available']))
-                return value['available']
+        if wallet['type'] == "exchange":
+           if wallet['currency'] == currency:
+                print("balance {}".format(wallet['available']))
+                return wallet['available']
     
     return -1
         
