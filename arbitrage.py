@@ -61,11 +61,11 @@ def dsh_cycle():
     global cycling    
     cycling = True
 
-    ticker_zecusd = requests.get('https://api.bitfinex.com/v1/pubticker/dshusd')    
-    zecusd_price = float(ticker_zecusd.json()['bid'])   
-    proportion_zecusd = (10 / zecusd_price)
+    ticker = requests.get('https://api.bitfinex.com/v1/pubticker/dshusd')    
+    price = float(ticker.json()['bid'])   
+    proportion = (10 / price)
 
-    order = place_order(proportion_zecusd, 0, "buy", "market", "dshusd")
+    order = place_order(proportion, 0, "buy", "market", "dshusd")
     
     print(order)
     
@@ -84,7 +84,7 @@ def sign_payload(payload):
         "X-BFX-PAYLOAD": data
     } 
 
-def place_order(amount, price, side, ord_type, symbol='btcusd', exchange='bitfinex'):
+def place_order(amount, price, side, ord_type, symbol, exchange='bitfinex'):
     payload = {
         "request": "/v1/order/new",
         "nonce": str(time.time() * 1000000),
