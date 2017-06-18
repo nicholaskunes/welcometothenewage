@@ -21,9 +21,9 @@ def zec_cycle():
 
     ticker = requests.get('https://api.bitfinex.com/v1/pubticker/zecusd') 
     ticker2 = requests.get('https://api.bitfinex.com/v1/pubticker/btcusd')
-    proportion = (wallet_balances("usd") / float(ticker.json()['bid']))
+    proportion = (wallet_balances("usd") / float(ticker.json()['mid']))
     
-    print("[calc] pro {} balance {} price {}".format(proportion, wallet_balances("usd"), float(ticker.json()['bid'])))
+    print("[calc] pro {} balance {} price {}".format(proportion, wallet_balances("usd"), float(ticker.json()['mid'])))
 
     order = place_order(str(proportion), str(time.time()), "buy", "exchange market", "zecusd")
     print(order['order_id'])
@@ -32,7 +32,7 @@ def zec_cycle():
         print("order status false 1")
         time.sleep(0.2)
         
-    proportion = (wallet_balances("usd") / float(ticker.json()['bid']))
+    proportion = (wallet_balances("usd") / float(ticker.json()['mid']))
 
     order = place_order(str(proportion), str(time.time()), "sell", "exchange market", "zecbtc")
     print(order['order_id'])
@@ -41,7 +41,7 @@ def zec_cycle():
         print("order status false 2")
         time.sleep(0.2)
         
-    proportion_btc = (wallet_balances("usd") / float(ticker2.json()['bid']))
+    proportion_btc = (wallet_balances("usd") / float(ticker2.json()['mid']))
     
     order = place_order(str(proportion_btc), str(time.time()), "sell", "exchange market", "btcusd")
     print(order['order_id'])
@@ -54,9 +54,9 @@ def xmr_cycle():
 
     ticker = requests.get('https://api.bitfinex.com/v1/pubticker/xmrusd')    
     ticker2 = requests.get('https://api.bitfinex.com/v1/pubticker/btcusd')
-    proportion = (wallet_balances("usd") / float(ticker.json()['bid']))
+    proportion = (wallet_balances("usd") / float(ticker.json()['mid']))
     
-    print("[calc] pro {} balance {} price {}".format(proportion, wallet_balances("usd"), float(ticker.json()['bid'])))
+    print("[calc] pro {} balance {} price {}".format(proportion, wallet_balances("usd"), float(ticker.json()['mid'])))
 
     order = place_order(str(proportion), str(time.time()), "buy", "exchange market", "xmrusd")
     print(order['order_id'])
@@ -65,7 +65,7 @@ def xmr_cycle():
         print("order status false 1")
         time.sleep(0.2)
         
-    proportion = (wallet_balances("usd") / float(ticker.json()['bid']))
+    proportion = (wallet_balances("usd") / float(ticker.json()['mid']))
 
     order = place_order(str(proportion), str(time.time()), "sell", "exchange market", "xmrbtc")
     print(order['order_id'])
@@ -74,7 +74,7 @@ def xmr_cycle():
         print("order status false 2")
         time.sleep(0.2)
         
-    proportion_btc = (wallet_balances("usd") / float(ticker2.json()['bid']))
+    proportion_btc = (wallet_balances("usd") / float(ticker2.json()['mid']))
     
     order = place_order(str(proportion_btc), str(time.time()), "sell", "exchange market", "btcusd")
     print(order['order_id'])
@@ -87,14 +87,14 @@ def xrp_cycle():
 
     ticker = requests.get('https://api.bitfinex.com/v1/pubticker/xrpusd')    
     ticker2 = requests.get('https://api.bitfinex.com/v1/pubticker/btcusd')
-    proportion = (wallet_balances("usd") / float(ticker.json()['bid']))
+    proportion = (wallet_balances("usd") / float(ticker.json()['mid']))
     
-    print("[calc] pro {} balance {} price {}".format(proportion, wallet_balances("usd"), float(ticker.json()['bid'])))
+    print("[calc] pro {} balance {} price {}".format(proportion, wallet_balances("usd"), float(ticker.json()['mid'])))
 
     order = place_order(str(proportion), str(time.time()), "buy", "exchange market", "xrpusd")
     print(order['order_id'])
     
-    proportion = (wallet_balances("usd") / float(ticker.json()['bid']))
+    proportion = (wallet_balances("usd") / float(ticker.json()['mid']))
     
     while order_status(order['order_id']) == True:
         print("order status false 1")
@@ -107,7 +107,7 @@ def xrp_cycle():
         print("order status false 2")
         time.sleep(0.2)
         
-    proportion_btc = (wallet_balances("usd") / float(ticker2.json()['bid']))
+    proportion_btc = (wallet_balances("usd") / float(ticker2.json()['mid']))
         
     order = place_order(str(proportion_btc), str(time.time()), "sell", "exchange market", "btcusd")
     print(order['order_id'])
@@ -120,14 +120,14 @@ def dsh_cycle():
 
     ticker = requests.get('https://api.bitfinex.com/v1/pubticker/dshusd')    
     ticker2 = requests.get('https://api.bitfinex.com/v1/pubticker/btcusd')
-    proportion = (wallet_balances("usd") / float(ticker.json()['bid']))
+    proportion = (wallet_balances("usd") / float(ticker.json()['mid']))
     
-    print("[calc] pro {} balance {} price {}".format(proportion, wallet_balances("usd"), float(ticker.json()['bid'])))
+    print("[calc] pro {} balance {} price {}".format(proportion, wallet_balances("usd"), float(ticker.json()['mid'])))
 
     order = place_order(str(proportion), str(time.time()), "buy", "exchange market", "dshusd")
     print(order['order_id'])
     
-    proportion = (wallet_balances("usd") / float(ticker.json()['bid']))
+    proportion = (wallet_balances("usd") / float(ticker.json()['mid']))
     
     while order_status(order['order_id']) == True:
         print("order status false 1")
@@ -140,7 +140,7 @@ def dsh_cycle():
         print("order status false 2")
         time.sleep(0.2)
         
-    proportion_btc = (wallet_balances("usd") / float(ticker2.json()['bid']))
+    proportion_btc = (wallet_balances("usd") / float(ticker2.json()['mid']))
         
     order = place_order(str(proportion_btc), str(time.time()), "sell", "exchange market", "btcusd")
     print(order['order_id'])
