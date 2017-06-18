@@ -144,6 +144,7 @@ def place_order(amount, price, side, ord_type, symbol, exchange='bitfinex'):
         json_resp['order_id']
     except:
         return json_resp['message']
+        print(json_resp)
     return json_resp    
 
 def tick():
