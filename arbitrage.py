@@ -26,16 +26,16 @@ def zec_cycle():
 
     order = place_order(str(proportion), str(time.time()), "buy", "exchange market", "zecusd")
     
-    while order_status(order['order_id']) == False:
+    while order_status(order['order_id']) == True:
         print("order status false 1")
-        time.sleep(0.5)
+        time.sleep(0.2)
 
     order = place_order(str(proportion), str(time.time()), "sell", "exchange market", "zecbtc")
     print(order['order_id'])
     
-    while order_status(order['order_id']) == False:
+    while order_status(order['order_id']) == True:
         print("order status false 2")
-        time.sleep(0.5)
+        time.sleep(0.2)
     
     order = place_order(str(proportion_btc), str(time.time()), "sell", "exchange market", "btcusd")
     print(order['order_id'])
@@ -54,16 +54,16 @@ def xmr_cycle():
     order = place_order(str(proportion), str(time.time()), "buy", "exchange market", "xmrusd")
     print(order['order_id'])
     
-    while order_status(order['order_id']) == False:
+    while order_status(order['order_id']) == True:
         print("order status false 1")
-        time.sleep(0.5)
+        time.sleep(0.2)
 
     order = place_order(str(proportion), str(time.time()), "sell", "exchange market", "xmrbtc")
     print(order['order_id'])
     
-    while order_status(order['order_id']) == False:
+    while order_status(order['order_id']) == True:
         print("order status false 2")
-        time.sleep(0.5)
+        time.sleep(0.2)
     
     order = place_order(str(proportion_btc), str(time.time()), "sell", "exchange market", "btcusd")
     print(order['order_id'])
@@ -82,16 +82,16 @@ def xrp_cycle():
     order = place_order(str(proportion), str(time.time()), "buy", "exchange market", "xrpusd")
     print(order['order_id'])
     
-    while order_status(order['order_id']) == False:
+    while order_status(order['order_id']) == True:
         print("order status false 1")
-        time.sleep(0.5)
+        time.sleep(0.2)
         
     order = place_order(str(proportion), str(time.time()), "sell", "exchange market", "xrpbtc")
     print(order['order_id'])
     
-    while order_status(order['order_id']) == False:
+    while order_status(order['order_id']) == True:
         print("order status false 2")
-        time.sleep(0.5)
+        time.sleep(0.2)
         
     order = place_order(str(proportion_btc), str(time.time()), "sell", "exchange market", "btcusd")
     print(order['order_id'])
@@ -110,16 +110,16 @@ def dsh_cycle():
     order = place_order(str(proportion), str(time.time()), "buy", "exchange market", "dshusd")
     print(order['order_id'])
     
-    while order_status(order['order_id']) == False:
+    while order_status(order['order_id']) == True:
         print("order status false 1")
-        time.sleep(0.5)
+        time.sleep(0.2)
         
     order = place_order(str(proportion), str(time.time()), "sell", "exchange market", "dshbtc")
     print(order['order_id'])
     
-    while order_status(order['order_id']) == False:
+    while order_status(order['order_id']) == True:
         print("order status false 2")
-        time.sleep(0.5)
+        time.sleep(0.2)
         
     order = place_order(str(proportion_btc), str(time.time()), "sell", "exchange market", "btcusd")
     print(order['order_id'])
@@ -177,7 +177,7 @@ def order_status(order_id):
         json_resp['is_live']
     except:
         print(json_resp)
-        return False
+        return True
     return json_resp['is_live']
 
 def tick():
