@@ -7,45 +7,71 @@ from apscheduler.schedulers.blocking import BlockingScheduler
 import numpy as np
 import threading
 import time
+import base64
+import hmac
+import hashlib
 
 tickCount = 0
 cycling = False
 
 def zec_cycle():
-    global cycling
-    
-    print("zec cycle")
-    
+    global cycling    
     cycling = True
-    time.sleep(14)
+    
     cycling = False
     
 def xmr_cycle():
-    global cycling
-    
-    print("xmr cycle")
-    
+    global cycling    
     cycling = True
-    time.sleep(14)
+
     cycling = False
     
 def xrp_cycle():
-    global cycling
-    
-    print("xrp cycle")
-    
+    global cycling    
     cycling = True
-    time.sleep(14)
+
     cycling = False
 
 def dsh_cycle():
-    global cycling
-    
-    print("dsh cycle")
-    
+    global cycling    
     cycling = True
-    time.sleep(14)
-    cycling = False    
+
+    cycling = False   
+
+
+def sign_payload(payload):
+    j = json.dumps(payload)
+    data = base64.standard_b64encode(j.encode('utf8'))
+
+    h = hmac.new("80VnuuA3vQThm2lTQJBDEsLgGPisBxg2WVFi2ZXtoRO".encode('utf8'), data, hashlib.sha384)
+    signature = h.hexdigest()
+    return {
+        "X-BFX-APIKEY": "il3r5zm6WVxkfBsbso1JG7XvekPBmTGYEHWeH20TQ6p",
+        "X-BFX-SIGNATURE": signature,
+        "X-BFX-PAYLOAD": data
+    } 
+
+def place_order(self, amount, price, side, ord_type, symbol='btcusd', exchange='bitfinex'):
+    payload = {
+        "request": "/v1/order/new",
+        "nonce": str(time.time() * 1000000),
+        "symbol": symbol,
+        "amount": amount,
+        "price": price,
+        "exchange": exchange,
+        "side": side,
+        "type": ord_type
+    }
+
+    signed_payload = sign_payload(payload)
+    r = requests.post(self.URL + "api.bitfinex.com/v1/order/new", headers=signed_payload, verify=True)
+    json_resp = r.json()
+
+    try:
+        json_resp['order_id']
+    except:
+        return json_resp['message']
+    return json_resp    
 
 def tick():
     global tickCount 
