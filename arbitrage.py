@@ -187,7 +187,7 @@ def wallet_balances(currency):
     for wallet in json_resp:
         if wallet['type'] == "exchange":
            if wallet['currency'] == currency:
-                return wallet['available']
+                return float(wallet['available'])
     
     return -1
         
