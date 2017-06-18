@@ -136,7 +136,7 @@ def tick():
     threshold_xrp = (float(ticker_btcusd.json()['bid']) - ((1 / float(ticker_xrpbtc.json()['bid'])) * float(ticker_xrpusd.json()['bid']))) - ((float(ticker_btcusd.json()['bid']) * 0.002) * 3)
     threshold_dsh = (float(ticker_btcusd.json()['bid']) - ((1 / float(ticker_dshbtc.json()['bid'])) * float(ticker_dshusd.json()['bid']))) - ((float(ticker_btcusd.json()['bid']) * 0.002) * 3)
 
-    threshold = 0.6
+    threshold = 25
     
     thresholds = np.array([ threshold_zec, threshold_xmr, threshold_xrp, threshold_dsh ])
         
@@ -160,7 +160,7 @@ def tick():
         altcoin = "null"
     else:
         altcoin = "cycling"
-                
+        
     date_format='%m/%d/%Y %H:%M:%S %Z'
     date = datetime.now(tz=pytz.utc)
     date = date.astimezone(timezone('US/Pacific'))
