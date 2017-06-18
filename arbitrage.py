@@ -18,6 +18,16 @@ def zec_cycle():
     global cycling    
     cycling = True
     
+    #def place_order(amount, price, side, ord_type, symbol='btcusd', exchange='bitfinex')
+    
+    ticker_zecusd = requests.get('https://api.bitfinex.com/v1/pubticker/zecusd')    
+    zecusd_price = float(ticker_zecusd.json()['bid'])   
+    proportion_zecusd = (10 / zecusd_price)
+
+    order = place_order(proportion_zecusd, 0, "buy", "market", "zecusd")
+    
+    print(order)
+
     cycling = False
     
 def xmr_cycle():
@@ -51,7 +61,7 @@ def sign_payload(payload):
         "X-BFX-PAYLOAD": data
     } 
 
-def place_order(self, amount, price, side, ord_type, symbol='btcusd', exchange='bitfinex'):
+def place_order(amount, price, side, ord_type, symbol='btcusd', exchange='bitfinex'):
     payload = {
         "request": "/v1/order/new",
         "nonce": str(time.time() * 1000000),
@@ -64,7 +74,7 @@ def place_order(self, amount, price, side, ord_type, symbol='btcusd', exchange='
     }
 
     signed_payload = sign_payload(payload)
-    r = requests.post(self.URL + "api.bitfinex.com/v1/order/new", headers=signed_payload, verify=True)
+    r = requests.post("api.bitfinex.com/v1/order/new", headers=signed_payload, verify=True)
     json_resp = r.json()
 
     try:
