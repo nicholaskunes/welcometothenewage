@@ -180,7 +180,7 @@ def main():
     print("{0:{1}^60}".format(" usd > zec/xmr/xrp/dsh > btc > usd ", "="))
     print("{0:{1}^60}".format("", "="))
     scheduler = BlockingScheduler(timezone=utc)
-    scheduler.add_job(tick, 'interval', seconds=5)
+    scheduler.add_job(tick, 'interval', seconds=10)
     try:
         scheduler.start()
     except (KeyboardInterrupt, SystemExit):
