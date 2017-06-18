@@ -23,7 +23,7 @@ def zec_cycle():
     ticker2 = requests.get('https://api.bitfinex.com/v1/pubticker/btcusd')
     proportion = (wallet_balances("usd") / float(ticker.json()['bid']))
     
-    print("[{}] pro {} balance {} price {}".format(date.strftime(date_format), proportion, wallet_balances("usd"), float(ticker.json()['bid'])))
+    print("[calc] pro {} balance {} price {}".format(proportion, wallet_balances("usd"), float(ticker.json()['bid'])))
 
     order = place_order(str(proportion), str(time.time()), "buy", "exchange market", "zecusd")
     print(order['order_id'])
@@ -56,7 +56,7 @@ def xmr_cycle():
     ticker2 = requests.get('https://api.bitfinex.com/v1/pubticker/btcusd')
     proportion = (wallet_balances("usd") / float(ticker.json()['bid']))
     
-    print("[{}] pro {} balance {} price {}".format(date.strftime(date_format), proportion, wallet_balances("usd"), float(ticker.json()['bid'])))
+    print("[calc] pro {} balance {} price {}".format(proportion, wallet_balances("usd"), float(ticker.json()['bid'])))
 
     order = place_order(str(proportion), str(time.time()), "buy", "exchange market", "xmrusd")
     print(order['order_id'])
@@ -89,7 +89,7 @@ def xrp_cycle():
     ticker2 = requests.get('https://api.bitfinex.com/v1/pubticker/btcusd')
     proportion = (wallet_balances("usd") / float(ticker.json()['bid']))
     
-    print("[{}] pro {} balance {} price {}".format(date.strftime(date_format), proportion, wallet_balances("usd"), float(ticker.json()['bid'])))
+    print("[calc] pro {} balance {} price {}".format(proportion, wallet_balances("usd"), float(ticker.json()['bid'])))
 
     order = place_order(str(proportion), str(time.time()), "buy", "exchange market", "xrpusd")
     print(order['order_id'])
@@ -122,7 +122,7 @@ def dsh_cycle():
     ticker2 = requests.get('https://api.bitfinex.com/v1/pubticker/btcusd')
     proportion = (wallet_balances("usd") / float(ticker.json()['bid']))
     
-    print("[{}] pro {} balance {} price {}".format(date.strftime(date_format), proportion, wallet_balances("usd"), float(ticker.json()['bid'])))
+    print("[calc] pro {} balance {} price {}".format(proportion, wallet_balances("usd"), float(ticker.json()['bid'])))
 
     order = place_order(str(proportion), str(time.time()), "buy", "exchange market", "dshusd")
     print(order['order_id'])
