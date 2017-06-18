@@ -177,7 +177,26 @@ def place_order(amount, price, side, ord_type, symbol, exchange='bitfinex'):
         print(json_resp)
         return json_resp
     return json_resp    
+
+def wallet_balances(currency):
+    payload = {
+        "request": "/v1/balances",
+        "nonce": str(time.time() + 2000)
+    }
+
+    signed_payload = sign_payload(payload)
+    r = requests.post("https://api.bitfinex.com/v1/balances", headers=signed_payload, verify=True)
+    json_resp = r.json()
+       
+    for wallet in json_resp:
+        value = json_resp[wallet]
+        if value['type'] == "exchange":
+           if value['currency'] == currency:
+                print("balance {}".format(value['available']))
+                return value['available']
     
+    return -1
+        
 def order_status(order_id):
     payload = {
         "request": "/v1/order/status",
@@ -189,8 +208,6 @@ def order_status(order_id):
     r = requests.post("https://api.bitfinex.com/v1/order/status", headers=signed_payload, verify=True)
     json_resp = r.json()
     
-    print(json_resp)
-
     try:
         json_resp['is_live']
     except:
@@ -231,23 +248,25 @@ def tick():
     threshold = 1
     
     thresholds = np.array([ threshold_zec, threshold_xmr, threshold_xrp, threshold_dsh ])
+    
+    wallet_balances("usd")
         
     if thresholds.max() == threshold_zec and threshold_zec >= threshold and cycling == False:
         altcoin = "zec"
         t = threading.Thread(target=zec_cycle)
-        t.start()    
+        #t.start()    
     elif thresholds.max() == threshold_xmr and threshold_xmr >= threshold and cycling == False:
         altcoin = "xmr"
         t = threading.Thread(target=xmr_cycle)
-        t.start() 
+        #t.start() 
     elif thresholds.max() == threshold_xrp and threshold_xrp >= threshold and cycling == False:
         altcoin = "xrp"      
         t = threading.Thread(target=xrp_cycle)  
-        t.start()         
+        #t.start()         
     elif thresholds.max() == threshold_dsh and threshold_dsh >= threshold and cycling == False:
         altcoin = "dsh"
         t = threading.Thread(target=dsh_cycle)
-        t.start() 
+        #t.start() 
     elif cycling == False:
         altcoin = "null"
     else:
