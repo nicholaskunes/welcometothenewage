@@ -21,8 +21,7 @@ def zec_cycle():
 
     ticker = requests.get('https://api.bitfinex.com/v1/pubticker/zecusd') 
     ticker2 = requests.get('https://api.bitfinex.com/v1/pubticker/btcusd')
-    proportion = (27 / float(ticker.json()['bid']))
-    proportion_btc = (27 / float(ticker2.json()['bid']))
+    proportion = (wallet_balances("usd") / float(ticker.json()['bid']))
 
     order = place_order(str(proportion), str(time.time()), "buy", "exchange market", "zecusd")
     
@@ -30,7 +29,7 @@ def zec_cycle():
         print("order status false 1")
         time.sleep(0.2)
         
-    proportion = proportion - (proportion * 0.002)
+    proportion = (wallet_balances("usd") / float(ticker.json()['bid']))
 
     order = place_order(str(proportion), str(time.time()), "sell", "exchange market", "zecbtc")
     print(order['order_id'])
@@ -39,7 +38,7 @@ def zec_cycle():
         print("order status false 2")
         time.sleep(0.2)
         
-    proportion_btc = proportion_btc - ((proportion_btc * 0.002) * 2)
+    proportion_btc = (wallet_balances("usd") / float(ticker2.json()['bid']))
     
     order = place_order(str(proportion_btc), str(time.time()), "sell", "exchange market", "btcusd")
     print(order['order_id'])
@@ -52,8 +51,7 @@ def xmr_cycle():
 
     ticker = requests.get('https://api.bitfinex.com/v1/pubticker/xmrusd')    
     ticker2 = requests.get('https://api.bitfinex.com/v1/pubticker/btcusd')
-    proportion = (27 / float(ticker.json()['bid']))
-    proportion_btc = (27 / float(ticker2.json()['bid']))
+    proportion = (wallet_balances("usd") / float(ticker.json()['bid']))
 
     order = place_order(str(proportion), str(time.time()), "buy", "exchange market", "xmrusd")
     print(order['order_id'])
@@ -62,7 +60,7 @@ def xmr_cycle():
         print("order status false 1")
         time.sleep(0.2)
         
-    proportion = proportion - (proportion * 0.002)
+    proportion = (wallet_balances("usd") / float(ticker.json()['bid']))
 
     order = place_order(str(proportion), str(time.time()), "sell", "exchange market", "xmrbtc")
     print(order['order_id'])
@@ -71,7 +69,7 @@ def xmr_cycle():
         print("order status false 2")
         time.sleep(0.2)
         
-    proportion_btc = proportion_btc - ((proportion_btc * 0.002) * 2)
+    proportion_btc = (wallet_balances("usd") / float(ticker2.json()['bid']))
     
     order = place_order(str(proportion_btc), str(time.time()), "sell", "exchange market", "btcusd")
     print(order['order_id'])
@@ -84,13 +82,12 @@ def xrp_cycle():
 
     ticker = requests.get('https://api.bitfinex.com/v1/pubticker/xrpusd')    
     ticker2 = requests.get('https://api.bitfinex.com/v1/pubticker/btcusd')
-    proportion = (27 / float(ticker.json()['bid']))
-    proportion_btc = (27 / float(ticker2.json()['bid']))
+    proportion = (wallet_balances("usd") / float(ticker.json()['bid']))
 
     order = place_order(str(proportion), str(time.time()), "buy", "exchange market", "xrpusd")
     print(order['order_id'])
     
-    proportion = proportion - (proportion * 0.002)
+    proportion = (wallet_balances("usd") / float(ticker.json()['bid']))
     
     while order_status(order['order_id']) == True:
         print("order status false 1")
@@ -103,7 +100,7 @@ def xrp_cycle():
         print("order status false 2")
         time.sleep(0.2)
         
-    proportion_btc = proportion_btc - ((proportion_btc * 0.002) * 2)
+    proportion_btc = (wallet_balances("usd") / float(ticker2.json()['bid']))
         
     order = place_order(str(proportion_btc), str(time.time()), "sell", "exchange market", "btcusd")
     print(order['order_id'])
@@ -116,13 +113,12 @@ def dsh_cycle():
 
     ticker = requests.get('https://api.bitfinex.com/v1/pubticker/dshusd')    
     ticker2 = requests.get('https://api.bitfinex.com/v1/pubticker/btcusd')
-    proportion = (27 / float(ticker.json()['bid']))
-    proportion_btc = (27 / float(ticker2.json()['bid']))
+    proportion = (wallet_balances("usd") / float(ticker.json()['bid']))
 
     order = place_order(str(proportion), str(time.time()), "buy", "exchange market", "dshusd")
     print(order['order_id'])
     
-    proportion = proportion - (proportion * 0.002)
+    proportion = (wallet_balances("usd") / float(ticker.json()['bid']))
     
     while order_status(order['order_id']) == True:
         print("order status false 1")
@@ -135,7 +131,7 @@ def dsh_cycle():
         print("order status false 2")
         time.sleep(0.2)
         
-    proportion_btc = proportion_btc - ((proportion_btc * 0.002) * 2)
+    proportion_btc = (wallet_balances("usd") / float(ticker2.json()['bid']))
         
     order = place_order(str(proportion_btc), str(time.time()), "sell", "exchange market", "btcusd")
     print(order['order_id'])
@@ -191,7 +187,6 @@ def wallet_balances(currency):
     for wallet in json_resp:
         if wallet['type'] == "exchange":
            if wallet['currency'] == currency:
-                print("balance {}".format(wallet['available']))
                 return wallet['available']
     
     return -1
@@ -247,25 +242,23 @@ def tick():
     threshold = 1
     
     thresholds = np.array([ threshold_zec, threshold_xmr, threshold_xrp, threshold_dsh ])
-    
-    wallet_balances("usd")
-        
+            
     if thresholds.max() == threshold_zec and threshold_zec >= threshold and cycling == False:
         altcoin = "zec"
         t = threading.Thread(target=zec_cycle)
-        #t.start()    
+        t.start()    
     elif thresholds.max() == threshold_xmr and threshold_xmr >= threshold and cycling == False:
         altcoin = "xmr"
         t = threading.Thread(target=xmr_cycle)
-        #t.start() 
+        t.start() 
     elif thresholds.max() == threshold_xrp and threshold_xrp >= threshold and cycling == False:
         altcoin = "xrp"      
         t = threading.Thread(target=xrp_cycle)  
-        #t.start()         
+        t.start()         
     elif thresholds.max() == threshold_dsh and threshold_dsh >= threshold and cycling == False:
         altcoin = "dsh"
         t = threading.Thread(target=dsh_cycle)
-        #t.start() 
+        t.start() 
     elif cycling == False:
         altcoin = "null"
     else:
