@@ -21,9 +21,9 @@ def zec_cycle():
 
     ticker = requests.get('https://api.bitfinex.com/v1/pubticker/zecusd')    
     price = float(ticker.json()['bid'])   
-    proportion = (10 / price)
+    proportion = (38 / price)
 
-    order = place_order(proportion, 0, "buy", "market", "zecusd")
+    order = place_order(str(proportion), str(time.time()), "buy", "exchange market", "zecusd")
     
     print(order)
     
@@ -35,9 +35,9 @@ def xmr_cycle():
 
     ticker = requests.get('https://api.bitfinex.com/v1/pubticker/xmrusd')    
     price = float(ticker.json()['bid'])   
-    proportion = (10 / price)
+    proportion = (38 / price)
 
-    order = place_order(proportion, 0, "buy", "market", "xmrusd")
+    order = place_order(str(proportion), str(time.time()), "buy", "exchange market", "xmrusd")
     
     print(order)
     
@@ -49,9 +49,9 @@ def xrp_cycle():
 
     ticker = requests.get('https://api.bitfinex.com/v1/pubticker/xrpusd')    
     price = float(ticker.json()['bid'])   
-    proportion = (10 / price)
+    proportion = (38 / price)
 
-    order = place_order(proportion, 0, "buy", "market", "xrpusd")
+    order = place_order(str(proportion), str(time.time()), "buy", "exchange market", "xrpusd")
     
     print(order)
     
@@ -63,9 +63,9 @@ def dsh_cycle():
 
     ticker = requests.get('https://api.bitfinex.com/v1/pubticker/dshusd')    
     price = float(ticker.json()['bid'])   
-    proportion = (10 / price)
+    proportion = (38 / price)
 
-    order = place_order(proportion, 0, "buy", "market", "dshusd")
+    order = place_order(str(proportion), str(time.time()), "buy", "exchange market", "dshusd")
     
     print(order)
     
@@ -180,9 +180,9 @@ def main():
     print("{0:{1}^60}".format("", "="))
     
     #order = place_order("0.0149", str(time.time()), "sell", "exchange market", "btcusd")
-    order = place_order("0.0149", str(time.time()), "buy", "exchange market", "btcusd")
+    #order = place_order("0.0149", str(time.time()), "buy", "exchange market", "btcusd")   
+    #print(order)
     
-    print(order)
     scheduler = BlockingScheduler(timezone=utc)
     scheduler.add_job(tick, 'interval', seconds=10)
     try:
