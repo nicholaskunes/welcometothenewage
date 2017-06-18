@@ -87,7 +87,7 @@ def sign_payload(payload):
 def place_order(amount, price, side, ord_type, symbol, exchange='bitfinex'):
     payload = {
         "request": "/v1/order/new",
-        "nonce": str(time.time() * 1000000),
+        "nonce": time.time(),
         "symbol": symbol,
         "amount": amount,
         "price": price,
