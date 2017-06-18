@@ -21,18 +21,21 @@ def zec_cycle():
 
     ticker = requests.get('https://api.bitfinex.com/v1/pubticker/zecusd') 
     ticker2 = requests.get('https://api.bitfinex.com/v1/pubticker/btcusd')
-    proportion = (29 / float(ticker.json()['bid']))
-    proportion_btc = (29 / float(ticker2.json()['bid']))
+    proportion = (27 / float(ticker.json()['bid']))
+    proportion_btc = (27 / float(ticker2.json()['bid']))
 
     order = place_order(str(proportion), str(time.time()), "buy", "exchange market", "zecusd")
-    print(order['order_id'])
     
-    time.sleep(1)
+    while order_status(order['order_id']) == False:
+        print("order status false 1")
+        time.sleep(0.5)
 
     order = place_order(str(proportion), str(time.time()), "sell", "exchange market", "zecbtc")
     print(order['order_id'])
     
-    time.sleep(1)
+    while order_status(order['order_id']) == False:
+        print("order status false 2")
+        time.sleep(0.5)
     
     order = place_order(str(proportion_btc), str(time.time()), "sell", "exchange market", "btcusd")
     print(order['order_id'])
@@ -45,18 +48,22 @@ def xmr_cycle():
 
     ticker = requests.get('https://api.bitfinex.com/v1/pubticker/xmrusd')    
     ticker2 = requests.get('https://api.bitfinex.com/v1/pubticker/btcusd')
-    proportion = (29 / float(ticker.json()['bid']))
-    proportion_btc = (29 / float(ticker2.json()['bid']))
+    proportion = (27 / float(ticker.json()['bid']))
+    proportion_btc = (27 / float(ticker2.json()['bid']))
 
     order = place_order(str(proportion), str(time.time()), "buy", "exchange market", "xmrusd")
     print(order['order_id'])
     
-    time.sleep(1)
+    while order_status(order['order_id']) == False:
+        print("order status false 1")
+        time.sleep(0.5)
 
     order = place_order(str(proportion), str(time.time()), "sell", "exchange market", "xmrbtc")
     print(order['order_id'])
     
-    time.sleep(1)
+    while order_status(order['order_id']) == False:
+        print("order status false 2")
+        time.sleep(0.5)
     
     order = place_order(str(proportion_btc), str(time.time()), "sell", "exchange market", "btcusd")
     print(order['order_id'])
@@ -69,19 +76,23 @@ def xrp_cycle():
 
     ticker = requests.get('https://api.bitfinex.com/v1/pubticker/xrpusd')    
     ticker2 = requests.get('https://api.bitfinex.com/v1/pubticker/btcusd')
-    proportion = (29 / float(ticker.json()['bid']))
-    proportion_btc = (29 / float(ticker2.json()['bid']))
+    proportion = (27 / float(ticker.json()['bid']))
+    proportion_btc = (27 / float(ticker2.json()['bid']))
 
     order = place_order(str(proportion), str(time.time()), "buy", "exchange market", "xrpusd")
     print(order['order_id'])
     
-    time.sleep(1)
-
+    while order_status(order['order_id']) == False:
+        print("order status false 1")
+        time.sleep(0.5)
+        
     order = place_order(str(proportion), str(time.time()), "sell", "exchange market", "xrpbtc")
     print(order['order_id'])
     
-    time.sleep(1)
-    
+    while order_status(order['order_id']) == False:
+        print("order status false 2")
+        time.sleep(0.5)
+        
     order = place_order(str(proportion_btc), str(time.time()), "sell", "exchange market", "btcusd")
     print(order['order_id'])
             
@@ -93,19 +104,23 @@ def dsh_cycle():
 
     ticker = requests.get('https://api.bitfinex.com/v1/pubticker/dshusd')    
     ticker2 = requests.get('https://api.bitfinex.com/v1/pubticker/btcusd')
-    proportion = (29 / float(ticker.json()['bid']))
-    proportion_btc = (29 / float(ticker2.json()['bid']))
+    proportion = (27 / float(ticker.json()['bid']))
+    proportion_btc = (27 / float(ticker2.json()['bid']))
 
     order = place_order(str(proportion), str(time.time()), "buy", "exchange market", "dshusd")
     print(order['order_id'])
     
-    time.sleep(1)
-
+    while order_status(order['order_id']) == False:
+        print("order status false 1")
+        time.sleep(0.5)
+        
     order = place_order(str(proportion), str(time.time()), "sell", "exchange market", "dshbtc")
     print(order['order_id'])
     
-    time.sleep(1)
-    
+    while order_status(order['order_id']) == False:
+        print("order status false 2")
+        time.sleep(0.5)
+        
     order = place_order(str(proportion_btc), str(time.time()), "sell", "exchange market", "btcusd")
     print(order['order_id'])
             
@@ -143,9 +158,27 @@ def place_order(amount, price, side, ord_type, symbol, exchange='bitfinex'):
     try:
         json_resp['order_id']
     except:
-        return json_resp['message']
         print(json_resp)
+        return json_resp
     return json_resp    
+    
+def order_status(order_id):
+    payload = {
+        "request": "/v1/order/status",
+        "nonce": str(time.time() + 2000),
+        "order_id": order_id
+    }
+
+    signed_payload = sign_payload(payload)
+    r = requests.post("https://api.bitfinex.com/v1/order/status", headers=signed_payload, verify=True)
+    json_resp = r.json()
+
+    try:
+        json_resp['is_live']
+    except:
+        print(json_resp)
+        return False
+    return json_resp['is_live']
 
 def tick():
     global tickCount 
