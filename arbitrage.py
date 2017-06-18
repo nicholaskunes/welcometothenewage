@@ -188,6 +188,8 @@ def order_status(order_id):
     signed_payload = sign_payload(payload)
     r = requests.post("https://api.bitfinex.com/v1/order/status", headers=signed_payload, verify=True)
     json_resp = r.json()
+    
+    print(json_resp)
 
     try:
         json_resp['is_live']
