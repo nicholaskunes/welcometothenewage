@@ -21,11 +21,11 @@ def zec_cycle():
 
     ticker = requests.get('https://api.bitfinex.com/v1/pubticker/zecusd')    
     price = float(ticker.json()['bid'])   
-    proportion = (38 / price)
+    proportion = (37 / price)
 
     order = place_order(str(proportion), str(time.time()), "buy", "exchange market", "zecusd")
     
-    print(order.json()['order_id'])
+    print(['order_id'])
     
     cycling = False
     
@@ -35,11 +35,11 @@ def xmr_cycle():
 
     ticker = requests.get('https://api.bitfinex.com/v1/pubticker/xmrusd')    
     price = float(ticker.json()['bid'])   
-    proportion = (38 / price)
+    proportion = (37 / price)
 
     order = place_order(str(proportion), str(time.time()), "buy", "exchange market", "xmrusd")
     
-    print(order.json()['order_id'])
+    print(['order_id'])
     
     cycling = False
     
@@ -49,11 +49,11 @@ def xrp_cycle():
 
     ticker = requests.get('https://api.bitfinex.com/v1/pubticker/xrpusd')    
     price = float(ticker.json()['bid'])   
-    proportion = (38 / price)
+    proportion = (37 / price)
 
     order = place_order(str(proportion), str(time.time()), "buy", "exchange market", "xrpusd")
     
-    print(order.json()['order_id'])
+    print(['order_id'])
     
     cycling = False
 
@@ -63,11 +63,11 @@ def dsh_cycle():
 
     ticker = requests.get('https://api.bitfinex.com/v1/pubticker/dshusd')    
     price = float(ticker.json()['bid'])   
-    proportion = (38 / price)
+    proportion = (37 / price)
 
     order = place_order(str(proportion), str(time.time()), "buy", "exchange market", "dshusd")
     
-    print(order.json()['order_id'])
+    print(['order_id'])
     
     cycling = False   
 
