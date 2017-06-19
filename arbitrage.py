@@ -239,12 +239,13 @@ def tick():
     
     #trigger theory:
     #threshold = (btc_price - ((1 / alt_btc_price) * alt_price)) - ((btc_price * 0.002) * 3);
+    #($bitfinex_btc_ask-((1/$bitfinex_eth_crypto_ask)*$bitfinex_eth_bid))-(($bitfinex_btc_ask*0.002)*3);
     
     #BITFINEX TRIGGERS
-    threshold_zec = (float(ticker_btcusd.json()['bid']) - ((1 / float(ticker_zecbtc.json()['bid'])) * float(ticker_zecusd.json()['ask']))) - ((float(ticker_btcusd.json()['bid']) * 0.002) * 3)
-    threshold_xmr = (float(ticker_btcusd.json()['bid']) - ((1 / float(ticker_xmrbtc.json()['bid'])) * float(ticker_xmrusd.json()['ask']))) - ((float(ticker_btcusd.json()['bid']) * 0.002) * 3)
-    threshold_xrp = (float(ticker_btcusd.json()['bid']) - ((1 / float(ticker_xrpbtc.json()['bid'])) * float(ticker_xrpusd.json()['ask']))) - ((float(ticker_btcusd.json()['bid']) * 0.002) * 3)
-    threshold_dsh = (float(ticker_btcusd.json()['bid']) - ((1 / float(ticker_dshbtc.json()['bid'])) * float(ticker_dshusd.json()['ask']))) - ((float(ticker_btcusd.json()['bid']) * 0.002) * 3)
+    threshold_zec = (float(ticker_btcusd.json()['ask']) - ((1 / float(ticker_zecbtc.json()['ask'])) * float(ticker_zecusd.json()['bid']))) - ((float(ticker_btcusd.json()['ask']) * 0.002) * 3)
+    threshold_xmr = (float(ticker_btcusd.json()['ask']) - ((1 / float(ticker_xmrbtc.json()['ask'])) * float(ticker_xmrusd.json()['bid']))) - ((float(ticker_btcusd.json()['ask']) * 0.002) * 3)
+    threshold_xrp = (float(ticker_btcusd.json()['ask']) - ((1 / float(ticker_xrpbtc.json()['ask'])) * float(ticker_xrpusd.json()['bid']))) - ((float(ticker_btcusd.json()['ask']) * 0.002) * 3)
+    threshold_dsh = (float(ticker_btcusd.json()['ask']) - ((1 / float(ticker_dshbtc.json()['ask'])) * float(ticker_dshusd.json()['bid']))) - ((float(ticker_btcusd.json()['ask']) * 0.002) * 3)
     
     threshold = 15
     
