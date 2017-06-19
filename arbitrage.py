@@ -129,7 +129,7 @@ def dsh_cycle():
     
     print("[calc] pro {} balance {} price {}".format(proportion, wallet_balances("usd"), float(ticker2.json()['ask'])))
 
-    order = place_order(str(proportion), str(time.time()), "buy", "exchange market", "dshusd")
+    order = place_order(str(proportion), str(time.time()), "buy", "exchange market", "btcusd")
     print(order['order_id'])
 
     while order_status(order['order_id']) == True:
@@ -150,7 +150,7 @@ def dsh_cycle():
     order = place_order(str(proportion), str(time.time()), "sell", "exchange market", "dshusd")
     print(order['order_id'])
             
-    cycling = False 
+    cycling = False
 
 
 def sign_payload(payload):
