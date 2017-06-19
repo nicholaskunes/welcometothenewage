@@ -46,7 +46,7 @@ def zec_cycle():
         print("order status false 2")
         time.sleep(0.2)
         
-    proportion = (wallet_balances("zec") - (wallet_balances("zec") * 0.002))
+    proportion = float((wallet_balances("zec") - (wallet_balances("zec") * 0.002)))
     
     order = place_order(str(proportion), str(time.time()), "sell", "exchange market", "zecusd")
     print(order['order_id'])
@@ -79,7 +79,7 @@ def xmr_cycle():
         print("order status false 2")
         time.sleep(0.2)
         
-    proportion = (wallet_balances("xmr") - (wallet_balances("xmr") * 0.002))
+    proportion = float((wallet_balances("xmr") - (wallet_balances("xmr") * 0.002)))
     
     order = place_order(str(proportion), str(time.time()), "sell", "exchange market", "xmrusd")
     print(order['order_id'])
@@ -112,7 +112,7 @@ def xrp_cycle():
         print("order status false 2")
         time.sleep(0.2)
         
-    proportion = (wallet_balances("xrp") - (wallet_balances("xrp") * 0.002))
+    proportion = float((wallet_balances("xrp") - (wallet_balances("xrp") * 0.002)))
     
     order = place_order(str(proportion), str(time.time()), "sell", "exchange market", "xrpusd")
     print(order['order_id'])
@@ -145,7 +145,7 @@ def dsh_cycle():
         print("order status false 2")
         time.sleep(0.2)
         
-    proportion = (wallet_balances("dsh") - (wallet_balances("dsh") * 0.002))
+    proportion = float((wallet_balances("dsh") - (wallet_balances("dsh") * 0.002)))
     
     order = place_order(str(proportion), str(time.time()), "sell", "exchange market", "dshusd")
     print(order['order_id'])
