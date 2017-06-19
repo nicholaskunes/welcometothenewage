@@ -276,26 +276,26 @@ def tick():
     dsh5 = dsh4 - (dsh4 * 0.002)
     threshold_dsh = dsh5 - float(ticker_btcusd.json()['ask'])
     
-    threshold = 200
+    threshold = 4
     
     thresholds = np.array([ threshold_zec, threshold_xmr, threshold_xrp, threshold_dsh ])
             
     if thresholds.max() == threshold_zec and threshold_zec >= threshold and cycling == False:
         altcoin = "zec"
         t = threading.Thread(target=zec_cycle)
-        #t.start()    
+        t.start()    
     elif thresholds.max() == threshold_xmr and threshold_xmr >= threshold and cycling == False:
         altcoin = "xmr"
         t = threading.Thread(target=xmr_cycle)
-        #t.start() 
+        t.start() 
     elif thresholds.max() == threshold_xrp and threshold_xrp >= threshold and cycling == False:
         altcoin = "xrp"      
         t = threading.Thread(target=xrp_cycle)  
-        #t.start()         
+        t.start()         
     elif thresholds.max() == threshold_dsh and threshold_dsh >= threshold and cycling == False:
         altcoin = "dsh"
         t = threading.Thread(target=dsh_cycle)
-        #t.start() 
+        t.start() 
     elif cycling == False:
         altcoin = "null"
     else:
