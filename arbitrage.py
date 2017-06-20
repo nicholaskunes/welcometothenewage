@@ -254,32 +254,32 @@ def tick():
     zec4 = zec3 - (zec3 * 0.002)
     zec5 = zec4 * float(ticker_zecbtc.json()['bid'])
     zec6 = zec5 - (zec5 * 0.002)
-    threshold_zec = zec5 - float(ticker_btcusd.json()['bid'])
+    threshold_zec = zec6 - float(ticker_btcusd.json()['bid'])
     
     
-    xmr1 = float(ticker_btcusd.json()['ask'])/float(ticker_zecusd.json()['ask'])
+    xmr1 = float(ticker_btcusd.json()['ask'])/float(ticker_xmrusd.json()['ask'])
     xmr2 = xmr1 - (xmr1 * 0.002)
     xmr3 = xmr2 / float(ticker_xmrusd.json()['ask'])
     xmr4 = xmr3 - (xmr3 * 0.002)
     xmr5 = xmr4 * float(ticker_xmrbtc.json()['bid'])
     xmr6 = xmr5 - (xmr5 * 0.002)
-    threshold_xmr = xmr5 - float(ticker_btcusd.json()['bid'])
+    threshold_xmr = xmr6 - float(ticker_btcusd.json()['bid'])
     
-    xrp1 = float(ticker_btcusd.json()['ask'])/float(ticker_zecusd.json()['ask'])
+    xrp1 = float(ticker_btcusd.json()['ask'])/float(ticker_xrpusd.json()['ask'])
     xrp2 = xrp1 - (xrp1 * 0.002)
     xrp3 = xrp2 / float(ticker_xrpusd.json()['ask'])
     xrp4 = xrp3 - (xrp3 * 0.002)
     xrp5 = xrp4 * float(ticker_xrpbtc.json()['bid'])
     xrp6 = xrp5 - (xrp5 * 0.002)
-    threshold_xrp = xrp5 - float(ticker_btcusd.json()['bid'])
+    threshold_xrp = xrp6 - float(ticker_btcusd.json()['bid'])
     
-    dsh1 = float(ticker_btcusd.json()['ask'])/float(ticker_zecusd.json()['ask'])
+    dsh1 = float(ticker_btcusd.json()['ask'])/float(ticker_dshusd.json()['ask'])
     dsh2 = dsh1 - (dsh1 * 0.002)
     dsh3 = dsh2 / float(ticker_dshusd.json()['ask'])
     dsh4 = dsh3 - (dsh3 * 0.002)
     dsh5 = dsh4 * float(ticker_dshbtc.json()['bid'])
     dsh6 = dsh5 - (dsh5 * 0.002)
-    threshold_dsh = dsh5 - float(ticker_btcusd.json()['bid'])
+    threshold_dsh = dsh6 - float(ticker_btcusd.json()['bid'])
       
     threshold = 40000000
     
