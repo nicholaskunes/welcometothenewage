@@ -1,7 +1,7 @@
 import requests
+import pytz
 from pytz import utc
 from pytz import timezone
-import pytz
 from datetime import datetime
 from pymongo import MongoClient
 from apscheduler.schedulers.blocking import BlockingScheduler
