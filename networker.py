@@ -15,7 +15,7 @@ tickCount = 0;
 def tick():
     global tickCount 
     ticker = requests.get('https://api.bitfinex.com/v1/pubticker/btcusd').json()
-    depth = requests.get('https://api.bitfinex.com/v1/book/btcusd').json()
+    depth = requests.get('https://api.bitfinex.com/v1/book/btcusd?limit_bids=60&limit_asks=60').json()
     
     date_format='%m/%d/%Y %H:%M:%S %Z'
     date = datetime.now(tz=pytz.utc)
