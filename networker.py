@@ -22,10 +22,10 @@ def tick():
     date = date.astimezone(timezone('US/Pacific'))
     
     price = float(ticker['ask'])
-    print(price)
+    for bid in depth['bids']:
+        print(bid)
     v_bid = sum([bid['amount'] for bid in depth['bids']])
     v_ask = sum([ask['amount'] for ask in depth['asks']]) 
-    print(v_ask)
     collection.insert({'date': date, 'price': price, 'v_bid': v_bid, 'v_ask': v_ask})
     tickCount += 1;
     print(tickCount)
