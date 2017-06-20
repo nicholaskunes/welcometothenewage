@@ -248,35 +248,36 @@ def tick():
     #threshold = (btc_price - ((1 / alt_btc_price) * alt_price)) - ((btc_price * 0.002) * 3);
     #($bitfinex_btc_ask-((1/$bitfinex_eth_crypto_ask)*$bitfinex_eth_bid))-(($bitfinex_btc_ask*0.002)*3);
         
-    zec1 = float(ticker_btcusd.json()['ask']) - (float(ticker_btcusd.json()['ask']) * 0.002)
-    zec2 = zec1 / float(ticker_zecusd.json()['bid'])
-    zec3 = zec2 - (zec2 * 0.002)
-    zec4 = zec3 * float(ticker_zecbtc.json()['ask'])
-    zec5 = zec4 - (zec4 * 0.002)
-    threshold_zec = zec5 - float(ticker_btcusd.json()['ask'])
+    zec1 = float(ticker_btcusd.json()['ask']/float(ticker_zecusd.json()['ask']
+    zec2 = zec1  - (zec1 * 0.002)
+    zec3 = zec2 / float(ticker_zecusd.json()['ask'])
+    zec4 = zec3 - (zec3 * 0.002)
+    zec5 = zec4 * float(ticker_zecbtc.json()['bid'])
+    zec6 = zec5 - (zec5 * 0.002)
+    threshold_zec = zec5 - float(ticker_btcusd.json()['bid'])
     
-    xmr1 = float(ticker_btcusd.json()['ask']) - (float(ticker_btcusd.json()['ask']) * 0.002)
-    xmr2 = xmr1 / float(ticker_xmrusd.json()['bid'])
-    xmr3 = xmr2 - (xmr2 * 0.002)
-    xmr4 = xmr3 * float(ticker_xmrbtc.json()['ask'])
-    xmr5 = xmr4 - (xmr4 * 0.002)
-    threshold_xmr = xmr5 - float(ticker_btcusd.json()['ask'])
+    xmr2 = xmr1  - (xmr1 * 0.002)
+    xmr3 = xmr2 / float(ticker_xmrusd.json()['ask'])
+    xmr4 = xmr3 - (xmr3 * 0.002)
+    xmr5 = xmr4 * float(ticker_xmrbtc.json()['bid'])
+    xmr6 = xmr5 - (xmr5 * 0.002)
+    threshold_xmr = xmr5 - float(ticker_btcusd.json()['bid'])
     
-    xrp1 = float(ticker_btcusd.json()['ask']) - (float(ticker_btcusd.json()['ask']) * 0.002)
-    xrp2 = xrp1 / float(ticker_xrpusd.json()['bid'])
-    xrp3 = xrp2 - (xrp2 * 0.002)
-    xrp4 = xrp3 * float(ticker_xrpbtc.json()['ask'])
-    xrp5 = xrp4 - (xrp4 * 0.002)
-    threshold_xrp = xrp5 - float(ticker_btcusd.json()['ask'])
+    xrp2 = xrp1  - (xrp1 * 0.002)
+    xrp3 = xrp2 / float(ticker_xrpusd.json()['ask'])
+    xrp4 = xrp3 - (xrp3 * 0.002)
+    xrp5 = xrp4 * float(ticker_xrpbtc.json()['bid'])
+    xrp6 = xrp5 - (xrp5 * 0.002)
+    threshold_xrp = xrp5 - float(ticker_btcusd.json()['bid'])
     
-    dsh1 = float(ticker_btcusd.json()['ask']) - (float(ticker_btcusd.json()['ask']) * 0.002)
-    dsh2 = dsh1 / float(ticker_dshusd.json()['bid'])
-    dsh3 = dsh2 - (dsh2 * 0.002)
-    dsh4 = dsh3 * float(ticker_dshbtc.json()['ask'])
-    dsh5 = dsh4 - (dsh4 * 0.002)
-    threshold_dsh = dsh5 - float(ticker_btcusd.json()['ask'])
+    dsh2 = dsh1  - (dsh1 * 0.002)
+    dsh3 = dsh2 / float(ticker_dshusd.json()['ask'])
+    dsh4 = dsh3 - (dsh3 * 0.002)
+    dsh5 = dsh4 * float(ticker_dshbtc.json()['bid'])
+    dsh6 = dsh5 - (dsh5 * 0.002)
+    threshold_dsh = dsh5 - float(ticker_btcusd.json()['bid'])
       
-    threshold = 40
+    threshold = 40000000
     
     thresholds = np.array([ threshold_zec, threshold_xmr, threshold_xrp, threshold_dsh ])
             
