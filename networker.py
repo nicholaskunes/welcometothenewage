@@ -23,7 +23,7 @@ def tick():
     
     price = float(ticker['ask'])
     for bid in depth['bids']:
-        print(bid)
+        print(bid['amount'])
     v_bid = sum([bid['amount'] for bid in depth['bids']])
     v_ask = sum([ask['amount'] for ask in depth['asks']]) 
     collection.insert({'date': date, 'price': price, 'v_bid': v_bid, 'v_ask': v_ask})
