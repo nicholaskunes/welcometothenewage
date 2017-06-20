@@ -248,7 +248,7 @@ def tick():
     #threshold = (btc_price - ((1 / alt_btc_price) * alt_price)) - ((btc_price * 0.002) * 3);
     #($bitfinex_btc_ask-((1/$bitfinex_eth_crypto_ask)*$bitfinex_eth_bid))-(($bitfinex_btc_ask*0.002)*3);
         
-    zec1 = float(ticker_btcusd.json()['ask']/float(ticker_zecusd.json()['ask']
+    zec1 = float(ticker_btcusd.json()['ask'])/float(ticker_zecusd.json()['ask'])
     zec2 = zec1 - (zec1 * 0.002)
     zec3 = zec2 / float(ticker_zecusd.json()['ask'])
     zec4 = zec3 - (zec3 * 0.002)
@@ -256,6 +256,8 @@ def tick():
     zec6 = zec5 - (zec5 * 0.002)
     threshold_zec = zec5 - float(ticker_btcusd.json()['bid'])
     
+    
+    xmr1 = float(ticker_btcusd.json()['ask'])/float(ticker_zecusd.json()['ask'])
     xmr2 = xmr1 - (xmr1 * 0.002)
     xmr3 = xmr2 / float(ticker_xmrusd.json()['ask'])
     xmr4 = xmr3 - (xmr3 * 0.002)
@@ -263,6 +265,7 @@ def tick():
     xmr6 = xmr5 - (xmr5 * 0.002)
     threshold_xmr = xmr5 - float(ticker_btcusd.json()['bid'])
     
+    xrp1 = float(ticker_btcusd.json()['ask'])/float(ticker_zecusd.json()['ask'])
     xrp2 = xrp1 - (xrp1 * 0.002)
     xrp3 = xrp2 / float(ticker_xrpusd.json()['ask'])
     xrp4 = xrp3 - (xrp3 * 0.002)
@@ -270,6 +273,7 @@ def tick():
     xrp6 = xrp5 - (xrp5 * 0.002)
     threshold_xrp = xrp5 - float(ticker_btcusd.json()['bid'])
     
+    dsh1 = float(ticker_btcusd.json()['ask'])/float(ticker_zecusd.json()['ask'])
     dsh2 = dsh1 - (dsh1 * 0.002)
     dsh3 = dsh2 / float(ticker_dshusd.json()['ask'])
     dsh4 = dsh3 - (dsh3 * 0.002)
