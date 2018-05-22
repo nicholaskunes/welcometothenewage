@@ -23,7 +23,7 @@ def tick():
     #v_ask = sum([ask[1] for ask in depth['btc_usd']['asks']])
     #collection.insert({'date': date, 'price': price, 'v_bid': v_bid, 'v_ask': v_ask})
     tickCount += 1;
-    #print(tickCount)
+    print(tickCount)
     #print("date: {} price: {} v_bid: {} v_ask: {}".format(date, price, v_bid, v_ask))
 
 
