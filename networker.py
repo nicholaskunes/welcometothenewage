@@ -4,12 +4,14 @@ from pytz import utc
 from datetime import datetime
 from pymongo import MongoClient
 from apscheduler.schedulers.blocking import BlockingScheduler
+import logging
 
 client = MongoClient()
 database = client['btc-e_db']
 collection = database['historical_data']
 tickCount = 0;
 
+logging.basicConfig()
 
 def tick():
     global tickCount 
