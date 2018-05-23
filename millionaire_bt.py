@@ -52,4 +52,6 @@ output = subprocess.check_output("curl --upload-file ./btc.csv https://transfer.
 
 subprocess.call("rm btc.csv", shell=True)
 
+end = evaluate_performance(prices3, dps, t=0.0001, step=1)
+
 print(output)
