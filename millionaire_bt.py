@@ -50,5 +50,5 @@ while True:
 	if end > 0:
 		positive += 1
 	
-	print "[iteration " + str(iterator) + "]" + " btc: " + str(end) + " confidence: " + str((positive / iterator) * 100) + " proof: " + str(positive) + "+ "
+	print "[iteration " + str(iterator) + "]" + " btc: " + str(end) + " confidence: " + str(float((float(positive) / float(iterator)) * 100.0)) + " proof: " + str(positive) + "+ "
 	
