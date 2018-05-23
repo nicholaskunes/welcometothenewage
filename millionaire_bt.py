@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 from pymongo import MongoClient
-from bitcoin_price_prediction.bayesian_regression import *
+from bayesian_regression import *
+import subprocess
+import time
 
 client = MongoClient()
 database = client['btc-e_db']
