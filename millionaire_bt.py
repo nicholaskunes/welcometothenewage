@@ -50,7 +50,7 @@ while True:
 	if end > 0:
 		positive += 1
 		
-	 np.savetxt("btc.csv", dps, delimiter=",")
+	np.savetxt("btc.csv", dps, delimiter=",")
  
  	output = subprocess.check_output("curl --upload-file ./btc.csv https://transfer.sh/btc.csv", shell=False)
  
