@@ -54,4 +54,6 @@ subprocess.call("rm btc.csv", shell=True)
 
 end = evaluate_performance(prices3, dps, t=0.0001, step=1)
 
+print str(end)
+
 print(output)
