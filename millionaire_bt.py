@@ -49,6 +49,12 @@ while True:
 	
 	if end > 0:
 		positive += 1
-	
-	print "[iteration " + str(iterator) + "]" + " btc: " + str(end) + " confidence: " + str(float((float(positive) / float(iterator)) * 100.0)) + " proof: " + str(positive) + "+ "
+		
+	 np.savetxt("btc.csv", dps, delimiter=",")
+ 
+ 	output = subprocess.check_output("curl --upload-file ./btc.csv https://transfer.sh/btc.csv", shell=False)
+ 
+ 	subprocess.call("rm btc.csv", shell=True)
+ 	
+	print "[iteration " + str(iterator) + "]" + " dPrice: " + output + " btc: " + str(end) + " confidence: " + str(float((float(positive) / float(iterator)) * 100.0)) + " proof: " + str(positive) + "+ "
 	
