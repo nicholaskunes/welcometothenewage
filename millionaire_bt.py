@@ -52,7 +52,7 @@ while True:
 		
 	np.savetxt("btc.csv", dps, delimiter=",")
  
- 	output = subprocess.check_output("curl --upload-file ./btc.csv https://transfer.sh/btc.csv", shell=False)
+ 	output = subprocess.check_output("curl --upload-file ./btc.csv https://transfer.sh/btc.csv", shell=True)
  
  	subprocess.call("rm btc.csv", shell=True)
  	
