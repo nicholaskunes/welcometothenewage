@@ -16,11 +16,11 @@ logging.basicConfig()
 def tick():
     global tickCount 
     ticker = requests.get('https://wex.nz/api/3/ticker/btc_usd').json()
-    depth = requests.get('https://wex.nz/api/3/depth/btc_usd?limit=60').json()
+    depth = requests.get('https://api.gdax.com/products/BTC-USD/book?level=2').json()
     date = datetime.fromtimestamp(int(ticker['btc_usd']['updated']))
     price = float(ticker['btc_usd']['last'])
-    v_bid = sum([bid[1] for bid in depth['btc_usd']['bids']])
-    v_ask = sum([ask[1] for ask in depth['btc_usd']['asks']])
+    v_bid = sum([bid[1] for bid in depth['bids']])
+    v_ask = sum([ask[1] for ask in depth['asks']])
     collection.insert({'date': date, 'price': price, 'v_bid': v_bid, 'v_ask': v_ask})
     tickCount += 1;
     print(tickCount)
