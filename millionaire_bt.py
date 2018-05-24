@@ -5,8 +5,8 @@ import subprocess
 import time
 
 client = MongoClient()
-database = client['btc-e_db']
-collection = database['historical_data']
+database = client['GDAX_db']
+collection = database['data']
 
 iterator = 0
 positive = 0
