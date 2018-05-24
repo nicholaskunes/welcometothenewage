@@ -7,8 +7,8 @@ from apscheduler.schedulers.blocking import BlockingScheduler
 import logging
 
 client = MongoClient()
-database = client['btc-e_db']
-collection = database['historical_data']
+database = client['GDAX_db']
+collection = database['data']
 tickCount = 0;
 
 logging.basicConfig()
