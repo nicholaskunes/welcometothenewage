@@ -80,9 +80,9 @@ for i in range(23, 721, 1):
     if dps[i] > t and position <= 0:
         trade_count += 1
         position += 1
-        ticker = requests.get('https://btc-e.com/api/3/ticker/btc_usd').json()
-        date = datetime.fromtimestamp(int(ticker['btc_usd']['updated']))
-        price = float(ticker['btc_usd']['last'])
+        ticker = requests.get('https://api.gdax.com/products/BTC-USD/ticker').json()
+        date = datetime.now()
+        price = float(ticker['price'])
         revenue_usd -= (bitcoin_amount - (bitcoin_amount * btce_fee)) * price
         revenue_btc += bitcoin_amount
         print("[SESSION-{}-{}] BOUGHT {} BTC at ${} USD and currently hold $ {}, BTC {}".format(date, dp_count, bitcoin_amount, price, revenue_usd, revenue_btc))
@@ -90,9 +90,9 @@ for i in range(23, 721, 1):
     if dps[i] < -t and position >= 0:
         trade_count += 1
         position -= 1
-        ticker = requests.get('https://btc-e.com/api/3/ticker/btc_usd').json()
-        date = datetime.fromtimestamp(int(ticker['btc_usd']['updated']))
-        price = float(ticker['btc_usd']['last'])
+        ticker = requests.get('https://api.gdax.com/products/BTC-USD/ticker').json()
+        date = datetime.now()
+        price = float(ticker['price'])
         revenue_btc -= bitcoin_amount
         revenue_usd += (bitcoin_amount - (bitcoin_amount * btce_fee)) * price
         print("[SESSION-{}-{}] SOLD {} BTC at ${} USD and currently hold $ {}, BTC {}".format(date, dp_count, bitcoin_amount, price, revenue_usd, revenue_btc))
