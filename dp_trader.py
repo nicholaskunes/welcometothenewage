@@ -9,8 +9,8 @@ from datetime import datetime
 from apscheduler.schedulers.blocking import BlockingScheduler
 
 client = MongoClient()
-database = client['btc-e_db']
-collection = database['historical_data']
+database = client['predictor']
+collection = database['gdax']
 
 # Retrieve price, v_ask, and v_bid data points from the database.
 prices = []
@@ -63,17 +63,17 @@ w = find_parameters_w(Dpi_r, Dp)
 # Predict average price changes over the third time period.
 dps = predict_dps(prices3, v_bid3, v_ask3, s1, s2, s3, w)
 
-ticker = requests.get('https://btc-e.com/api/3/ticker/btc_usd').json()
-price = float(ticker['btc_usd']['last'])
+ticker = requests.get('https://api.gdax.com/products/BTC-USD/ticker').json()
+price = float(ticker['price'])
 
-btce_fee = 0.002
+btce_fee = 0.000
 bitcoin_amount = 1
 trade_count = 0
 dp_count = 0
 position = 0
 revenue_btc = bitcoin_amount
 revenue_usd = price
-t = 0.005
+t = 0.0001
 for i in range(23, 721, 1):
     dp_count += 1
     # BUY position
@@ -99,8 +99,8 @@ for i in range(23, 721, 1):
         # sell what you bought
     time.sleep(10)
     
-ticker = requests.get('https://btc-e.com/api/3/ticker/btc_usd').json()
-price = float(ticker['btc_usd']['last'])
-date = datetime.fromtimestamp(int(ticker['btc_usd']['updated']))
+ticker = requests.get('https://api.gdax.com/products/BTC-USD/ticker').json()
+price = float(ticker['price'])
+date = datetime.now()
 print("###---SESSION COMPLETE---###")
 print("[SESSION-{}] # of trades: {} revenue: {} {} last price for profit calc: {}".format(date, trade_count, revenue_btc, revenue_usd, price))
