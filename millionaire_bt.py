@@ -5,8 +5,8 @@ import subprocess
 import time
 
 client = MongoClient()
-database = client['GDAX_db']
-collection = database['data']
+database = client['predictor']
+collection = database['gdax']
 
 iterator = 0
 positive = 0
