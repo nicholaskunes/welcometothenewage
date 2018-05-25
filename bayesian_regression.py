@@ -89,9 +89,9 @@ def evaluate_performance(prices, dps, t, step):
     bank_balance = 0
     position = 0
     for i in range(720, len(prices) - 1, step):
-        print(i - 720)
-        print(i)
-        print("len" + int(len(prices)))
+        print("i-720" + int(i - 720))
+        print("i " + int(i))
+        print("len " + int(len(prices)))
         # long position - BUY
         #if dps[i - 720] > t and position <= 0:
         #    position += 1
