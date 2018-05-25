@@ -1,5 +1,5 @@
-"""Script to gather market data from OKCoin Spot Price API."""
 import requests
+import ur
 from pytz import utc
 from datetime import datetime
 from pymongo import MongoClient
@@ -15,8 +15,11 @@ logging.basicConfig()
 
 def tick():
     global tickCount 
+    start = time.clock()
     ticker = requests.get('https://api.gdax.com/products/BTC-USD/ticker').json()
     depth = requests.get('https://api.gdax.com/products/BTC-USD/book?level=2').json()
+    request_time = time.clock() - start
+    print(request_time)
     date = datetime.strptime(ticker['time'], "%Y-%m-%dT%H:%M:%S.%fZ")
     price = float(ticker['price'])
     v_bid = sum([float(bid[1]) for bid in depth['bids']])
