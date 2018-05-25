@@ -1,5 +1,4 @@
 import requests
-import ur
 from pytz import utc
 from datetime import datetime
 from pymongo import MongoClient
