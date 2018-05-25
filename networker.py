@@ -24,7 +24,7 @@ def tick():
     price = float(ticker['price'])
     v_bid = sum([float(bid[1]) for bid in depth['bids']])
     v_ask = sum([float(ask[1]) for ask in depth['asks']])
-    collection.insert({'date': date, 'price': price, 'v_bid': v_bid, 'v_ask': v_ask})
+    #collection.insert({'date': date, 'price': price, 'v_bid': v_bid, 'v_ask': v_ask})
     tickCount += 1;
     print(tickCount)
     print("date: {} price: {} v_bid: {} v_ask: {}".format(date, price, v_bid, v_ask))
