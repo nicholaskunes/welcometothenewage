@@ -103,4 +103,4 @@ def evaluate_performance(prices, dps, t, step):
     # pay back what you borrowed
     if position == -1:
         bank_balance -= prices[len(prices) - 1]
-return bank_balance
+    return bank_balance
