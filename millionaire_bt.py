@@ -44,6 +44,19 @@ while True:
 	w = find_parameters_w(Dpi_r, Dp)
 
 	#dps = predict_dps(prices3, v_bid3, v_ask3, s1, s2, s3, w)
+	
+	prices = []
+	v_ask = []
+	v_bid = []
+	num_points = 777600
+	for doc in collection.find().limit(num_points):
+		prices.append(doc['price'])
+		v_ask.append(doc['v_ask'])
+		v_bid.append(doc['v_bid'])
+
+	[prices1, prices2, prices3] = np.array_split(prices, 3)
+	[v_bid1, v_bid2, v_bid3] = np.array_split(v_bid, 3)
+	[v_ask1, v_ask2, v_ask3] = np.array_split(v_ask, 3)
 
 	end = live_trade(prices3, v_bid3, v_ask3, s1, s2, s3, w, t=0.0001, step=1)
 	
