@@ -78,8 +78,18 @@ while True:
     			balance += curprice
 			print "[trade " + str(iterator) + " SELL]" + " timestamp: " + str(datetime.now()) + " delta p @ t+10s: " + str(end) + " USD: $" + str(float(balance))
 		
-		print "[trade " + str(iterator) + "]" + " timestamp: " + str(datetime.now()) + " delta p @ t+10s: " + str(end) + " NO TRADE "
 		time.sleep(10)
+		
+	ticker = requests.get('https://api.gdax.com/products/BTC-USD/ticker').json()
+
+	# sell what you bought
+    	if position == 1:
+        	balance += float(ticker['price'])
+    	# pay back what you borrowed
+    	if position == -1:
+		balance -= float(ticker['price'])
+		
+	print "[series profit: $" + balance + " ] " + "trade count: " + iterator
 		
 	#np.savetxt("btc.csv", dps, delimiter=",")
  	#np.savetxt("prices.csv", prices3, delimiter=",")
