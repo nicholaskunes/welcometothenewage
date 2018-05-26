@@ -61,7 +61,7 @@ while True:
 
 		end = live_trade(prices3, v_bid3, v_ask3, s1, s2, s3, w, t=0.0001, step=1)
 		
-		print "[trade " + str(iterator) + "]" + " timestamp: " + datetime.now() + " delta p @ t+10s: " + str(end)
+		print "[trade " + str(iterator) + "]" + " timestamp: " + str(datetime.now()) + " delta p @ t+10s: " + str(end)
 		time.sleep(10)
 		
 	#np.savetxt("btc.csv", dps, delimiter=",")
