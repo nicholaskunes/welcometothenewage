@@ -45,7 +45,7 @@ while True:
 
 	#dps = predict_dps(prices3, v_bid3, v_ask3, s1, s2, s3, w)
 
-	end = evaluate_performance(prices3, v_bid3, v_ask3, s1, s2, s3, w, t=0.0001, step=1)
+	end = live_trade(prices3, v_bid3, v_ask3, s1, s2, s3, w, t=0.0001, step=1)
 	
 	if end > 0:
 		positive += 1
