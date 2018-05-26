@@ -44,7 +44,7 @@ while True:
 
 	#dps = predict_dps(prices3, v_bid3, v_ask3, s1, s2, s3, w)
 	iterator = 0
-	for i in range(0, 40, 1): 
+	for i in range(0, 720, 1): 
 		iterator += 1
 		prices = []
 		v_ask = []
