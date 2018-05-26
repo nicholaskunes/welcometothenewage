@@ -107,29 +107,28 @@ def evaluate_performanceSNYTH(prices, dps, t, step):
 def evaluate_performance(prices, v_bid, v_ask, s1, s2, s3, w, t, step):
     dps = []
     w0, w1, w2, w3, w4 = w
-    for i in range(720, len(prices) - 1):
-        dp1 = predict_dpi(prices[i - 180:i], s1)
-        dp2 = predict_dpi(prices[i - 360:i], s2)
-        dp3 = predict_dpi(prices[i - 720:i], s3)
-        r = (v_bid[i] - v_ask[i]) / (v_bid[i] + v_ask[i])
-        dp = w0 + w1 * dp1 + w2 * dp2 + w3 * dp3 + w4 * r
-        dps.append(float(dp))
-        
-    bank_balance = 0
-    position = 0
-    for i in range(720, len(prices) - 1, step):
+    dp1 = predict_dpi(prices[(len(prices) - 1) - 180:(len(prices) - 1)], s1)
+    dp2 = predict_dpi(prices[(len(prices) - 1) - 360:(len(prices) - 1)], s2)
+    dp3 = predict_dpi(prices[(len(prices) - 1) - 720:(len(prices) - 1)], s3)
+    r = (v_bid[len(prices) - 1] - v_ask[len(prices) - 1]) / (v_bid[len(prices) - 1] + v_ask[len(prices) - 1])
+    dp = w0 + w1 * dp1 + w2 * dp2 + w3 * dp3 + w4 * r
+    
+    #bank_balance = 0
+    #position = 0
+    #for i in range(720, len(prices) - 1, step):
         # long position - BUY
-        if dps[i - 720] > t and position <= 0:
+    #    if dps[i - 720] > t and position <= 0:
             position += 1
             bank_balance -= prices[i]
         # short position - SELL
-        if dps[i - 720] < -t and position >= 0:
+    #    if dps[i - 720] < -t and position >= 0:
             position -= 1
             bank_balance += prices[i]
     # sell what you bought
-    if position == 1:
-        bank_balance += prices[len(prices) - 1]
+    #if position == 1:
+    #    bank_balance += prices[len(prices) - 1]
     # pay back what you borrowed
-    if position == -1:
-        bank_balance -= prices[len(prices) - 1]
-    return bank_balance
+    #if position == -1:
+    #    bank_balance -= prices[len(prices) - 1]
+    #return bank_balance
+    return dp
