@@ -44,6 +44,8 @@ while True:
 
 	#dps = predict_dps(prices3, v_bid3, v_ask3, s1, s2, s3, w)
 	iterator = 0
+    	position = 0
+	balance = 0
 	for i in range(0, 720, 1): 
 		iterator += 1
 		prices = []
@@ -61,7 +63,16 @@ while True:
 
 		end = live_trade(prices3, v_bid3, v_ask3, s1, s2, s3, w, t=0.0001, step=1)
 		
-		print "[trade " + str(iterator) + "]" + " timestamp: " + str(datetime.now()) + " delta p @ t+10s: " + str(end)
+        	# long position - BUY
+    		if end > t and position <= 0:
+    			position += 1
+    		        balance -= prices[i]
+        	# short position - SELL
+    		if end < -t and position >= 0:
+    			position -= 1
+    			balance += prices[i]
+		
+		print "[trade " + str(iterator) + "]" + " timestamp: " + str(datetime.now()) + " delta p @ t+10s: " + str(end) + " USD: $" + str(float(balance))
 		time.sleep(10)
 		
 	#np.savetxt("btc.csv", dps, delimiter=",")
