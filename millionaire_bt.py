@@ -77,7 +77,7 @@ while True:
     			position -= 1
     			balance += curprice
 			print "[trade " + str(iterator) + " SELL]" + " timestamp: " + str(datetime.now()) + " delta p @ t+10s: " + str(end) + " USD: $" + str(float(balance))
-		
+		print end
 		time.sleep(10)
 		
 	ticker = requests.get('https://api.gdax.com/products/BTC-USD/ticker').json()
