@@ -3,6 +3,7 @@ from pymongo import MongoClient
 from bayesian_regression import *
 import subprocess
 import time
+import requests
 from datetime import datetime
 
 client = MongoClient()
@@ -63,16 +64,21 @@ while True:
 
 		end = live_trade(prices3, v_bid3, v_ask3, s1, s2, s3, w, t=0.0001, step=1)
 		
+		ticker = requests.get('https://api.gdax.com/products/BTC-USD/ticker').json()
+		curprice = float(ticker['price'])
+		
         	# long position - BUY
     		if end > 0.0001 and position <= 0:
     			position += 1
-    		        balance -= prices[i]
+    		        balance -= curprice
+			print "[trade " + str(iterator) + " BUY]" + " timestamp: " + str(datetime.now()) + " delta p @ t+10s: " + str(end) + " USD: $" + str(float(balance))
         	# short position - SELL
     		if end < -0.0001 and position >= 0:
     			position -= 1
-    			balance += prices[i]
+    			balance += curprice
+			print "[trade " + str(iterator) + " SELL]" + " timestamp: " + str(datetime.now()) + " delta p @ t+10s: " + str(end) + " USD: $" + str(float(balance))
 		
-		print "[trade " + str(iterator) + "]" + " timestamp: " + str(datetime.now()) + " delta p @ t+10s: " + str(end) + " USD: $" + str(float(balance))
+		print "[trade " + str(iterator) + "]" + " timestamp: " + str(datetime.now()) + " delta p @ t+10s: " + str(end) + " NO TRADE "
 		time.sleep(10)
 		
 	#np.savetxt("btc.csv", dps, delimiter=",")
