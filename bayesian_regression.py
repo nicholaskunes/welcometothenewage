@@ -104,7 +104,7 @@ def evaluate_performanceSNYTH(prices, dps, t, step):
         bank_balance -= prices[len(prices) - 1]
     return bank_balance
 
-def evaluate_performance(prices, v_bid, v_ask, s1, s2, s3, w, t, step):
+def live_trade(prices, v_bid, v_ask, s1, s2, s3, w, t, step):
     dps = []
     w0, w1, w2, w3, w4 = w
     dp1 = predict_dpi(prices[(len(prices) - 1) - 180:(len(prices) - 1)], s1)
