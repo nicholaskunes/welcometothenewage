@@ -89,7 +89,7 @@ while True:
     	if position == -1:
 		balance -= float(ticker['price'])
 		
-	print "[series profit: $" + balance + " ] " + "trade count: " + iterator
+	print "[series profit: $" + str(balance) + " ] " + "trade count: " + str(iterator)
 		
 	#np.savetxt("btc.csv", dps, delimiter=",")
  	#np.savetxt("prices.csv", prices3, delimiter=",")
