@@ -118,12 +118,12 @@ def evaluate_performance(prices, v_bid, v_ask, s1, s2, s3, w, t, step):
     #for i in range(720, len(prices) - 1, step):
         # long position - BUY
     #    if dps[i - 720] > t and position <= 0:
-            position += 1
-            bank_balance -= prices[i]
+    #        position += 1
+    #        bank_balance -= prices[i]
         # short position - SELL
     #    if dps[i - 720] < -t and position >= 0:
-            position -= 1
-            bank_balance += prices[i]
+    #        position -= 1
+    #        bank_balance += prices[i]
     # sell what you bought
     #if position == 1:
     #    bank_balance += prices[len(prices) - 1]
