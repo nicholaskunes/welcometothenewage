@@ -8,11 +8,9 @@ client = MongoClient()
 database = client['predictor']
 collection = database['gdax']
 
-iterator = 0
 positive = 0
 
 while True:
-	iterator += 1
 	prices = []
 	v_ask = []
 	v_bid = []
@@ -44,24 +42,26 @@ while True:
 	w = find_parameters_w(Dpi_r, Dp)
 
 	#dps = predict_dps(prices3, v_bid3, v_ask3, s1, s2, s3, w)
-	
-	prices = []
-	v_ask = []
-	v_bid = []
-	num_points = 777600
-	for doc in collection.find().limit(num_points):
-		prices.append(doc['price'])
-		v_ask.append(doc['v_ask'])
-		v_bid.append(doc['v_bid'])
+	iterator = 0
+	for i in range(0, 40, 1): 
+		iterator += 1
+		prices = []
+		v_ask = []
+		v_bid = []
+		num_points = 777600
+		for doc in collection.find().limit(num_points):
+			prices.append(doc['price'])
+			v_ask.append(doc['v_ask'])
+			v_bid.append(doc['v_bid'])
 
-	[prices1, prices2, prices3] = np.array_split(prices, 3)
-	[v_bid1, v_bid2, v_bid3] = np.array_split(v_bid, 3)
-	[v_ask1, v_ask2, v_ask3] = np.array_split(v_ask, 3)
+		[prices1, prices2, prices3] = np.array_split(prices, 3)
+		[v_bid1, v_bid2, v_bid3] = np.array_split(v_bid, 3)
+		[v_ask1, v_ask2, v_ask3] = np.array_split(v_ask, 3)
 
-	end = live_trade(prices3, v_bid3, v_ask3, s1, s2, s3, w, t=0.0001, step=1)
-	
-	if end > 0:
-		positive += 1
+		end = live_trade(prices3, v_bid3, v_ask3, s1, s2, s3, w, t=0.0001, step=1)
+		
+		print "[trade " + str(iterator) + "]" + " timestamp: " + datetime.now() + " delta p @ t+10s: " + str(end)
+		time.sleep(10)
 		
 	#np.savetxt("btc.csv", dps, delimiter=",")
  	#np.savetxt("prices.csv", prices3, delimiter=",")
@@ -71,6 +71,3 @@ while True:
 
  	#subprocess.call("rm btc.csv", shell=True)
 	#subprocess.call("rm prices.csv", shell=True)
- 	
-	print "[iteration " + str(iterator) + "]" + " btc: " + str(end) + " confidence: " + str(float((float(positive) / float(iterator)) * 100.0)) + " proof: " + str(positive) + "+ "
-	
