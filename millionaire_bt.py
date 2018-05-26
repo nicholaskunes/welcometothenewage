@@ -64,11 +64,11 @@ while True:
 		end = live_trade(prices3, v_bid3, v_ask3, s1, s2, s3, w, t=0.0001, step=1)
 		
         	# long position - BUY
-    		if end > t and position <= 0:
+    		if end > 0.0001 and position <= 0:
     			position += 1
     		        balance -= prices[i]
         	# short position - SELL
-    		if end < -t and position >= 0:
+    		if end < -0.0001 and position >= 0:
     			position -= 1
     			balance += prices[i]
 		
