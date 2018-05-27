@@ -68,12 +68,12 @@ while True:
 		curprice = float(ticker['price'])
 		
         	# long position - BUY
-    		if end > 0.20 and position <= 0:
+    		if end > 0.0001 and position <= 0:
     			position += 1
     		        balance -= curprice
 			print "[trade " + str(iterator) + " BUY]" + " timestamp: " + str(datetime.now()) + " delta p @ t+10s: " + str(end) + " USD: $" + str(float(balance))
         	# short position - SELL
-    		if end < -0.20 and position >= 0:
+    		if end < -0.0001 and position >= 0:
     			position -= 1
     			balance += curprice
 			print "[trade " + str(iterator) + " SELL]" + " timestamp: " + str(datetime.now()) + " delta p @ t+10s: " + str(end) + " USD: $" + str(float(balance))
