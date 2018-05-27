@@ -72,12 +72,12 @@ while True:
     		if end > 0.0001 and position <= 0:
     			position += 1
     		        balance -= curprice
-			print "[trade " + str(iterator) + " BUY]" + " timestamp: " + str(datetime.now()) + " delta p @ t+10s: " + str(end) + " USD: $" + str(float(balance))
+			print("[trade " + str(iterator) + " BUY]" + " timestamp: " + str(datetime.now()) + " delta p @ t+10s: " + str(end) + " USD: $" + str(float(balance)))
         	# short position - SELL
     		if end < -0.0001 and position >= 0:
     			position -= 1
     			balance += curprice
-			print "[trade " + str(iterator) + " SELL]" + " timestamp: " + str(datetime.now()) + " delta p @ t+10s: " + str(end) + " USD: $" + str(float(balance))
+			print("[trade " + str(iterator) + " SELL]" + " timestamp: " + str(datetime.now()) + " delta p @ t+10s: " + str(end) + " USD: $" + str(float(balance)))
 		print(str(end) + ", ", end='', flush=True)
 		time.sleep(10)
 		
