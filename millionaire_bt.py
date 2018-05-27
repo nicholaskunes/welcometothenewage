@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from __future__ import print_function
+import sys
 from pymongo import MongoClient
 from bayesian_regression import *
 import subprocess
@@ -78,7 +79,8 @@ while True:
     			position -= 1
     			balance += curprice
 			print("[trade " + str(iterator) + " SELL]" + " timestamp: " + str(datetime.now()) + " delta p @ t+10s: " + str(end) + " USD: $" + str(float(balance)))
-		print(str(end) + ", ", end='', flush=True)
+		print(str(end) + ", ", end='')
+		sys.stdout.flush()
 		time.sleep(10)
 		
 	ticker = requests.get('https://api.gdax.com/products/BTC-USD/ticker').json()
