@@ -71,12 +71,12 @@ while True:
     		if end > 0.05 and position <= 0:
     			position += 1
     		        balance -= curprice
-			print "[" + str(iterator) + " BUY] " + str(datetime.now()) + " Δp" + str(end) + " $" + str(float(balance))
+			print "[" + str(iterator) + " BUY] " + str(datetime.now()) + " Δp" + str(end) + " $" + str(round(balance, 5))
         	# SELL
     		if end < -0.05 and position >= 0:
     			position -= 1
     			balance += curprice
-			print "[" + str(iterator) + " SELL] " + str(datetime.now()) + " Δp" + str(end) + " $" + str(float(balance))
+			print "[" + str(iterator) + " SELL] " + str(datetime.now()) + " Δp" + str(end) + " $" + str(round(balance, 5))
 		time.sleep(10)
 		
 	ticker = requests.get('https://api.gdax.com/products/BTC-USD/ticker').json()
