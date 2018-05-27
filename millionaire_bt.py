@@ -22,9 +22,9 @@ while True:
 		v_ask.append(doc['v_ask'])
 		v_bid.append(doc['v_bid'])
 
-	[prices1, prices2, prices3] = np.array_split(prices, 3)
-	[v_bid1, v_bid2, v_bid3] = np.array_split(v_bid, 3)
-	[v_ask1, v_ask2, v_ask3] = np.array_split(v_ask, 3)
+	[prices1, prices2] = np.array_split(prices, 2)
+	[v_bid1, v_bid2] = np.array_split(v_bid, 2)
+	[v_ask1, v_ask2] = np.array_split(v_ask, 2)
 	
 	timeseries180 = generate_timeseries(prices1, 180)
 	timeseries360 = generate_timeseries(prices1, 360)
@@ -58,11 +58,11 @@ while True:
 			v_ask.append(doc['v_ask'])
 			v_bid.append(doc['v_bid'])
 
-		[prices1, prices2, prices3] = np.array_split(prices, 3)
-		[v_bid1, v_bid2, v_bid3] = np.array_split(v_bid, 3)
-		[v_ask1, v_ask2, v_ask3] = np.array_split(v_ask, 3)
+		[prices1, prices2] = np.array_split(prices, 2)
+		[v_bid1, v_bid2] = np.array_split(v_bid, 2)
+		[v_ask1, v_ask2] = np.array_split(v_ask, 2)
 
-		end = live_trade(prices3, v_bid3, v_ask3, s1, s2, s3, w, t=0.0001, step=1)
+		end = live_trade(prices2, v_bid2, v_ask2, s1, s2, s3, w, t=0.0001, step=1)
 		
 		ticker = requests.get('https://api.gdax.com/products/BTC-USD/ticker').json()
 		curprice = float(ticker['price'])
@@ -77,6 +77,7 @@ while True:
     			position -= 1
     			balance += curprice
 			print "[trade " + str(iterator) + " SELL]" + " timestamp: " + str(datetime.now()) + " delta p @ t+10s: " + str(end) + " USD: $" + str(float(balance))
+		print(str(end) + ", ", end='', flush=True)
 		time.sleep(10)
 		
 	ticker = requests.get('https://api.gdax.com/products/BTC-USD/ticker').json()
