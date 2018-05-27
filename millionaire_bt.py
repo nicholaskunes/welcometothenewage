@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from pymongo import MongoClient
+from __future__ import print_function
 from bayesian_regression import *
 import subprocess
 import time
