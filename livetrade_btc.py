@@ -67,24 +67,24 @@ while True:
 		ticker = requests.get('https://api.gdax.com/products/BTC-USD/ticker').json()
 		curprice = float(ticker['price'])
 		
-        	# long position - BUY
-    		if end > 0.10 and position <= 0:
+        	# BUY
+    		if end > 0.05 and position <= 0:
     			position += 1
     		        balance -= curprice
-			print "[iteration " + str(iterator) + " BUY]" + " timestamp: " + str(datetime.now()) + " delta p @ t+10s: " + str(end) + " USD: $" + str(float(balance))
-        	# short position - SELL
-    		if end < -0.10 and position >= 0:
+			print "[" + str(iterator) + " BUY] " + str(datetime.now()) + " Δp" + str(end) + " $" + str(float(balance))
+        	# SELL
+    		if end < -0.05 and position >= 0:
     			position -= 1
     			balance += curprice
-			print "[iteration " + str(iterator) + " SELL]" + " timestamp: " + str(datetime.now()) + " delta p @ t+10s: " + str(end) + " USD: $" + str(float(balance))
+			print "[" + str(iterator) + " SELL] " + str(datetime.now()) + " Δp" + str(end) + " $" + str(float(balance))
 		time.sleep(10)
 		
 	ticker = requests.get('https://api.gdax.com/products/BTC-USD/ticker').json()
 
-	# sell what you bought
+	# SELL
     	if position == 1:
         	balance += float(ticker['price'])
-    	# pay back what you borrowed
+    	# PAY BROKER BACK
     	if position == -1:
 		balance -= float(ticker['price'])
 		
