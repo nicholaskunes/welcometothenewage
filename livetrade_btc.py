@@ -70,13 +70,13 @@ while True:
 		curprice = float(ticker['price'])
 		
         	# BUY
-    		if end > 0.001 and position <= 0:
+    		if end > 0.10 and position <= 0:
 			iterator += 1
     			position += 1
     		        balance -= curprice
 			#print "[" + str(iterator) + " BUY] " + str(datetime.now()) + " predict t+10s Δp " + str(end) + " $" + str(round(balance, 5))
         	# SELL
-    		if end < -0.001 and position >= 0:
+    		if end < -0.10 and position >= 0:
 			iterator += 1
     			position -= 1
     			balance += curprice
