@@ -5,6 +5,7 @@ import subprocess
 import time
 import requests
 from datetime import datetime
+from tqdm import tqdm
 
 client = MongoClient()
 database = client['predictor']
@@ -45,10 +46,11 @@ while True:
 
 	#dps = predict_dps(prices3, v_bid3, v_ask3, s1, s2, s3, w)
 	iterator = 0
+	completion = 0
     	position = 0
 	balance = 0
-	for i in range(0, 720, 1): 
-		iterator += 1
+	for i in tqdm(range(0, 720, 1)): 
+		completion += 1
 		prices = []
 		v_ask = []
 		v_bid = []
@@ -69,14 +71,16 @@ while True:
 		
         	# BUY
     		if end > 0.001 and position <= 0:
+			iterator += 1
     			position += 1
     		        balance -= curprice
-			print "[" + str(iterator) + " BUY] " + str(datetime.now()) + " predict t+10s Δp " + str(end) + " $" + str(round(balance, 5))
+			#print "[" + str(iterator) + " BUY] " + str(datetime.now()) + " predict t+10s Δp " + str(end) + " $" + str(round(balance, 5))
         	# SELL
     		if end < -0.001 and position >= 0:
+			iterator += 1
     			position -= 1
     			balance += curprice
-			print "[" + str(iterator) + " SELL] " + str(datetime.now()) + " predict t+10s Δp " + str(end) + " $" + str(round(balance, 5))
+			#print "[" + str(iterator) + " SELL] " + str(datetime.now()) + " predict t+10s Δp " + str(end) + " $" + str(round(balance, 5))
 		time.sleep(10)
 		
 	ticker = requests.get('https://api.gdax.com/products/BTC-USD/ticker').json()
