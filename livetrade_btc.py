@@ -70,7 +70,7 @@ while True:
 		ticker = requests.get('https://api.gdax.com/products/BTC-USD/ticker').json()
 		curprice = float(ticker['price'])
 		
-		print "change_variables = [ price: " + curprice + " Δp " + end + " ]"
+		print "change_variables = [ price: " + str(curprice) + " Δp " + str(end) + " ]"
 		
         	# BUY
     		if end > 0.15 and position <= 0:
