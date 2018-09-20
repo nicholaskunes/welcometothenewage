@@ -77,13 +77,13 @@ while True:
 			iterator += 1
     			position += 1
     		        balance -= curprice
-			#print "[" + str(iterator) + " BUY] " + str(datetime.now()) + " predict t+10s Δp " + str(end) + " $" + str(round(balance, 5))
+			print "[" + str(iterator) + " BUY] " + str(datetime.now()) + " predict t+10s Δp " + str(end) + " $" + str(round(balance, 5))
         	# SELL
     		if end < -0.15 and position >= 0:
 			iterator += 1
     			position -= 1
     			balance += curprice
-			#print "[" + str(iterator) + " SELL] " + str(datetime.now()) + " predict t+10s Δp " + str(end) + " $" + str(round(balance, 5))
+			print "[" + str(iterator) + " SELL] " + str(datetime.now()) + " predict t+10s Δp " + str(end) + " $" + str(round(balance, 5))
 		time.sleep(10)
 		
 	ticker = requests.get('https://api.gdax.com/products/BTC-USD/ticker').json()
