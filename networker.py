@@ -16,8 +16,8 @@ logging.basicConfig()
 def tick():
     global tickCount 
     start = time.clock()
-    ticker = requests.get('https://api.gdax.com/products/BTC-USD/ticker').json()
-    depth = requests.get('https://api.gdax.com/products/BTC-USD/book?level=2').json()
+    ticker = requests.get('https://api.pro.coinbase.com/products/BTC-USD/ticker').json()
+    depth = requests.get('https://api.pro.coinbase.com/products/BTC-USD/book?level=2').json()
     request_time = time.clock() - start
     date = datetime.now()
     price = float(ticker['price'])
