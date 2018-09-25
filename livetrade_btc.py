@@ -44,7 +44,9 @@ while True:
 
 	w = find_parameters_w(Dpi_r, Dp)
 
-	#dps = predict_dps(prices3, v_bid3, v_ask3, s1, s2, s3, w)
+	dps = predict_dps(prices3, v_bid3, v_ask3, s1, s2, s3, w)
+	np.savetxt("btc.csv", dps, delimiter=",")
+	prices4 = []
 	iterator = 0
 	completion = 0
     	position = 0
@@ -69,6 +71,7 @@ while True:
 		
 		ticker = requests.get('https://api.gdax.com/products/BTC-USD/ticker').json()
 		curprice = float(ticker['price'])
+		prices4.append(curprice)
 		
 		print "change_variables = [ price: " + str(curprice) + " Δp " + str(end) + " ]"
 		
@@ -98,7 +101,7 @@ while True:
 	print "[series profit: $" + str(balance) + " ] " + "trade count: " + str(iterator)
 		
 	#np.savetxt("btc.csv", dps, delimiter=",")
- 	#np.savetxt("prices.csv", prices3, delimiter=",")
+ 	np.savetxt("prices.csv", prices4, delimiter=",")
 
  	#output = subprocess.check_output("curl --upload-file ./btc.csv https://transfer.sh/btc.csv", shell=True)
   	#output2 = subprocess.check_output("curl --upload-file ./prices.csv https://transfer.sh/prices.csv", shell=True)
